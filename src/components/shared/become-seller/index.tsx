@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
 import React from "react";
-import { CheckShape } from "@gravity-ui/icons";
-import { Icon } from "@gravity-ui/uikit";
 
 export default function BecomeSeller() {
   return (
@@ -11,13 +10,8 @@ export default function BecomeSeller() {
         qilishingiz mumkin. <br /> <strong>Bu judayam oson</strong>
       </h3>
 
-      <Button
-        view="flat"
-        className="!bg-orange-400 !text-white w-full"
-        size="xl"
-        link="/register"
-      >
-        <Icon data={CheckShape} />
+      <Button className="!bg-orange-400 !text-white w-full" size="default">
+        <Check />
         Sotishni boshlash
       </Button>
     </div>

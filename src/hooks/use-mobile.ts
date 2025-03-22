@@ -1,14 +1,21 @@
-import { useModalStore } from "@/store/modal-store";
-import { useCallback } from "react";
+import * as React from "react"
 
-export function useModal(modalKey = "default") {
-  const { openModals, openModal, closeModal } = useModalStore();
+const MOBILE_BREAKPOINT = 768
 
-  const isOpen = !!openModals[modalKey]; // Modal ochiq yoki yo'qligini tekshirish
+export function useIsMobile() {
+    const [isMobile, setIsMobile] = React.useState<boolean | undefined>(
+        undefined,
+    )
 
-  // Funksiyalarni qaytarish
-  const open = useCallback(() => openModal(modalKey), [modalKey, openModal]);
-  const close = useCallback(() => closeModal(modalKey), [modalKey, closeModal]);
+    React.useEffect(() => {
+        const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+        const onChange = () => {
+            setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+        }
+        mql.addEventListener("change", onChange)
+        setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+        return () => mql.removeEventListener("change", onChange)
+    }, [])
 
-  return { isOpen, openModal: open, closeModal: close };
+    return !!isMobile
 }

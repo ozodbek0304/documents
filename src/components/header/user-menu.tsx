@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { useModal } from "@/hooks/use-mobile";
 import { LogIn } from "lucide-react";
+import { useModal } from "@/hooks/use-modal";
 
 export default function UserMenu() {
   const { openModal } = useModal();

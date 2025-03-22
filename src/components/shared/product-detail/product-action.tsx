@@ -1,14 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { formatMoney } from "@/lib/utils";
-import { Icon } from "@gravity-ui/uikit";
+import { formatMoney } from "@/lib/format-money";
+import { ArrowDown, BookOpen, Eye, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import {
-  ShoppingCart,
-  ArrowDownToSquare,
-  EyesLookLeft,
-  BookOpen,
-} from "@gravity-ui/icons";
 
 export default function ProductAction() {
   return (
@@ -27,26 +21,22 @@ export default function ProductAction() {
 
         <div className="flex gap-2 items-center py-2">
           <div className="flex items-center gap-2 text-xl border rounded-md py-1 px-2">
-            <Icon
-              data={ArrowDownToSquare}
-              className="text-blue-400"
-              size={20}
-            />
+            <ArrowDown />
             <p>30 marta</p>
           </div>
 
           <div className="flex items-center gap-2 text-xl border rounded-md py-1 px-2">
-            <Icon data={EyesLookLeft} className="text-blue-400" size={20} />
+            <Eye />
             <p>30 marta</p>
           </div>
 
           <div className="flex items-center gap-2 text-xl border rounded-md py-1 px-2">
-            <Icon data={BookOpen} className="text-blue-400" size={20} />
+            <BookOpen />
             <p>17 bet</p>
           </div>
         </div>
-        <Button size="xl" className="w-full" view="action">
-          <Icon data={ShoppingCart} />
+        <Button className="w-full">
+          <ShoppingCart />
           Sotib olish
         </Button>
       </div>

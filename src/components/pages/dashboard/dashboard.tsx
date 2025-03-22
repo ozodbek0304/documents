@@ -3,16 +3,14 @@ import SidebarLayout from "../../layout/sidebar-layout";
 import { DashboardCards } from "./dashboard-card";
 import { DashboardChart } from "./chart";
 
-type Props = {};
-
-const DashboardPage = (props: Props) => {
+const DashboardPage = () => {
   return (
-    <div className="my-5 w-full space-y-8">
-      <DashboardCards />
+    <React.Fragment>
       <SidebarLayout>
+        <DashboardCards />
         <DashboardChart />
       </SidebarLayout>
-    </div>
+    </React.Fragment>
   );
 };
 
