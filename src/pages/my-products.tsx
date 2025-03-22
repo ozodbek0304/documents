@@ -1,13 +1,13 @@
 import SidebarLayout from "@/components/layout/sidebar-layout";
-import DashboardPage from "@/components/pages/dashboard/dashboard";
+import MyProductsPage from "@/components/pages/my-products";
 import React from "react";
 
-const Dashboard = () => {
+function MyProducts() {
   return (
     <SidebarLayout>
-      <DashboardPage />
+      <MyProductsPage />
     </SidebarLayout>
   );
-};
+}
 
-export default Dashboard;
+export default MyProducts;

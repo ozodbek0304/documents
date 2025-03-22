@@ -1,13 +1,13 @@
 import SidebarLayout from "@/components/layout/sidebar-layout";
-import DashboardPage from "@/components/pages/dashboard/dashboard";
+import SettingsPage from "@/components/pages/settings";
 import React from "react";
 
-const Dashboard = () => {
+function Settings() {
   return (
     <SidebarLayout>
-      <DashboardPage />
+      <SettingsPage />
     </SidebarLayout>
   );
-};
+}
 
-export default Dashboard;
+export default Settings;
