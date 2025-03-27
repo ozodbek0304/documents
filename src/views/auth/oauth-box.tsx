@@ -5,7 +5,7 @@ import React from "react";
 export default function OAuthBox() {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <Button size="xl">
+      <Button>
         <span className="flex items-center font-semibold">
           <Image
             src={"/assets/telegram.png"}
@@ -18,7 +18,7 @@ export default function OAuthBox() {
         </span>
       </Button>
 
-      <Button size="xl">
+      <Button>
         <span className="flex items-center font-semibold">
           <Image
             src={"/assets/google.png"}

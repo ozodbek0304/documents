@@ -1,9 +1,9 @@
-import FormInput from "@/components/form/form-input";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { useForm } from "react-hook-form";
 import OAuthBox from "./oauth-box";
 import { useRouter } from "next/router";
+import FormInput from "@/components/form/input";
 
 type LoginFields = {
   email: string;
@@ -36,7 +36,7 @@ export default function LoginForm() {
         required
       />
 
-      <Button view="action" size="xl" type="submit">
+      <Button  type="submit">
         Keyingisi
       </Button>
 
