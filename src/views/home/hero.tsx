@@ -56,20 +56,20 @@ export default function HeroSection() {
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-            Hujjatlarni{" "}
+        <div className="mx-auto mb-12 max-w-4xl text-center">
+          <h1 className="mb-6 text-5xl font-bold leading-tight ">
+            Kerakli hujjatlarni {" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              saqlang
+              oson toping {" "}
             </span>{" "}
             va{" "}
             <span className="bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
-              ulashing
+              xarid qiling!
             </span>
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-blue-100 md:text-xl">
-            Barcha turdagi hujjatlarni oson yuklang, toping va yuklab oling.
-            Bilimlaringizni boshqalar bilan ulashing.
+            Sizga kerakli hujjatlarni tez va oson toping va sotib oling. Sifatli
+            va ishonchli ma’lumotlarga ega bo‘ling! 📄💳
           </p>
 
           {/* Search bar */}

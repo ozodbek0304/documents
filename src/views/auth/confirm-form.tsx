@@ -1,41 +1,55 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
-import { useForm } from "react-hook-form";
-import OAuthBox from "./oauth-box";
-import FormPinInput from "@/components/form/form-pin-input";
+import { useForm, useWatch } from "react-hook-form";
+
+import FormInputOTP from "@/components/form/input-otp";
+import { usePost } from "@/hooks/usePost";
+import { toast } from "sonner";
+import { LOGIN_TELEGRAM } from "@/lib/api-endpoints";
+import { useModal } from "@/hooks/use-modal";
 
 type ConfimFields = {
-  opt: string;
+  code: string;
 };
 
 export default function ConfimForm() {
   const form = useForm<ConfimFields>();
+  const { closeModal } = useModal("login-modal");
+  const { mutate, isPending } = usePost(LOGIN_TELEGRAM, {
+    onSuccess: () => {
+      toast.success("Successfully logged in");
+      closeModal();
+    },
+  });
+
+  const codeValue = useWatch({ control: form.control, name: "code" });
 
   function handleSubmit(vals: ConfimFields) {
-    console.log(vals);
+    mutate(LOGIN_TELEGRAM, vals);
   }
+
+  React.useEffect(() => {
+    if (codeValue?.length === 6) {
+      form.handleSubmit(handleSubmit)();
+    }
+  }, [codeValue]);
 
   return (
     <form
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-4 items-center"
       onSubmit={form.handleSubmit(handleSubmit)}
     >
-      <FormPinInput
-        label="Tasdiqlash kodi"
-        methods={form}
-        name="opt"
-        size="xl"
-        length={5}
-        fullWidth
-        required
-        wrapperClassName="flex items-center justify-between"
-      />
-
-      <Button view="action" size="xl" type="submit">
-        Keyingisi
-      </Button>
-
-      <OAuthBox />
+      <h1 className="font-bold text-2xl">Kodni Kiriting</h1>
+      <div className="text-center">
+        <a
+          href="tg://resolve?domain=DocBazarBot"
+          rel="noopener noreferrer"
+          className="lowercase border-b cursor-pointer hover:text-blue-400"
+        >
+          @DocBazarBot
+        </a>{" "}
+        telegram botiga kiring va <br /> 2 daqiqalik kodingizni oling.
+      </div>
+      <FormInputOTP disabled={isPending} methods={form} name="code" />
     </form>
   );
 }
