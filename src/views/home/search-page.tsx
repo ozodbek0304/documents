@@ -30,7 +30,7 @@ export default function DocumentSearch() {
         Document Bazar
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-4 mb-6">
+      <div className="mb-6">
         <ParamInput
           redirectPath="/search"
           fullWidth

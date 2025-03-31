@@ -6,6 +6,7 @@ import CategorySidebar from "@/components/pages/category";
 import { useRouter } from "next/router";
 import { Document } from "@/components/shared/product-list";
 import ProductCard from "@/components/shared/product-card";
+import ParamInput from "@/components/param/input";
 
 const CategoryPage = () => {
   const { data } = useGet(CATEGORIES);
@@ -17,18 +18,26 @@ const CategoryPage = () => {
     next_cursor: number;
     products: Document[];
   }>(`${PRODUCTS_HOME}/${currentSlug}`, {
-    options: { enabled: Boolean(currentSlug) },
+    params: { search: query.search },
+    options: { enabled: Boolean(currentSlug) || Boolean(query.search !== "") },
   });
-
-  console.log(document);
 
   return (
     <Layout>
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-8">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-8 sm:px-0 px-3">
+        <div className="col-span-4">
+          <ParamInput
+            redirectPath={`/category/${currentSlug}`}
+            fullWidth
+            type="search"
+            placeholder="Qidirish..."
+            className="w-full rounded-full focus-visible:ring-1  px-6"
+          />
+        </div>
         <div className="col-span-1 hidden lg:block">
           <CategorySidebar categories={data || []} currentSlug={currentSlug} />
         </div>
-        <div className="lg:col-span-3 col-span-4 items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 py-2 gap-3">
+        <div className="lg:col-span-3 col-span-4 items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 py-2 gap-x-3">
           {isSuccess &&
             document.products.length > 0 &&
             document.products.map((item, index) => (

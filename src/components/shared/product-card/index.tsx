@@ -24,14 +24,14 @@ export default function ProductCard({ product }: { product: Document }) {
       href={`/product/${product.slug}`}
       key={product.id}
       className={cn(
-        `group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 
+        `group relative overflow-hidden sm:rounded-xl rounded-lg bg-white shadow-md transition-all duration-500 hover:-translate-y-2 
         hover:shadow-xl
       border-t-3`,
         bgGradients[product.ext]
       )}
     >
       {/* Image with overlay */}
-      <div className="relative h-48 p-2 overflow-hidden">
+      <div className="relative sm:h-48 h-36 p-2 overflow-hidden">
         <Image
           width={300}
           height={300}
@@ -52,14 +52,14 @@ export default function ProductCard({ product }: { product: Document }) {
         </div>
       </div>
 
-      <div className="p-3 bg-gray-50 rounded-b-xl">
+      <div className="sm:p-3 p-2 bg-gray-50   rounded-b-xl">
         {/* Title */}
-        <h3 className="mb-3 text-sm font-semibold text-gray-800 line-clamp-2">
+        <h3 className="mb-3 sm:text-sm text-[13px] font-semibold text-gray-800 line-clamp-2">
           {product.name}
         </h3>
 
         {/* File info */}
-        <div className="mb-3 flex items-center gap-3">
+        <div className="mb-3 flex items-center sm:gap-3 gap-1">
           <div className="flex items-center gap-1.5">
             <BookOpen className={cn("h-4 w-4 text-gray-500")} />
             <span className="text-xs font-medium">
@@ -72,7 +72,7 @@ export default function ProductCard({ product }: { product: Document }) {
               {(product.size / 1024 / 1024).toFixed(2)} MB
             </span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="sm:flex items-center gap-1.5 hidden">
             <Eye className={cn("h-4 w-4 text-gray-500")} />
             <span className="text-xs font-medium">
               {product.view_count > 1000
@@ -85,12 +85,12 @@ export default function ProductCard({ product }: { product: Document }) {
         {/* Price and size */}
         <div className="flex items-center justify-between pt-2 border-t text-gray-700 border-gray-200">
           <div className={`flex items-center `}>
-            <span className="text-lg font-bold">
+            <span className="sm:text-lg text-md font-bold">
               {product.price.toLocaleString()} so'm
             </span>
             <span className="ml-1 text-sm">so'm</span>
           </div>
-          <div className="flex items-center gap-1.5 text-gray-500">
+          <div className="sm:flex hidden items-center gap-1.5 text-gray-500">
             <Download className={cn("h-4 w-4")} />
             <span className="text-xs font-medium">{product.sold_count}</span>
           </div>

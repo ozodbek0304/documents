@@ -40,7 +40,7 @@ const Layout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Header />
-      <main className="flex-grow  lg:p-0 px-3 ">{children}</main>
+      <main className="flex-grow">{children}</main>
       <Footer />
     </div>
   );

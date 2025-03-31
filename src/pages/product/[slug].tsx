@@ -48,7 +48,6 @@ export default function ProductPage({ product, productSimilar, error }: Props) {
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
 
-  console.log(productSimilar);
 
   return (
     <Layout>
@@ -56,28 +55,30 @@ export default function ProductPage({ product, productSimilar, error }: Props) {
         <title>{product.name || "Product Detail Page"}</title>
       </Head>
       <ProductDetail product={product} />
-      <div className="container mx-auto mt-12 relative">
-        <h1 className="text-2xl font-bold my-3">O'xshash mahsulotlar</h1>
-        <Carousel
-          opts={{
-            align: "center",
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="p-1">
-            {productSimilar.map((item, index) => (
-              <CarouselItem
-                key={index}
-                className="md:basis-1/3 p-0 ml-3  rounded-xl shadow-sm border lg:basis-1/5"
-              >
-                <ProductCard key={index} product={item} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute -top-7 left-[94%] cursor-pointer " />
-          <CarouselNext className="absolute -top-7 right-0  cursor-pointer " />
-        </Carousel>
-      </div>
+      {productSimilar?.length > 0 ? (
+        <div className="container mx-auto mt-12 relative">
+          <h1 className="text-2xl font-bold my-3">O'xshash mahsulotlar</h1>
+          <Carousel
+            opts={{
+              align: "center",
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="p-1">
+              {productSimilar.map((item, index) => (
+                <CarouselItem
+                  key={index}
+                  className="md:basis-1/3 p-0 ml-3  rounded-xl shadow-sm border lg:basis-1/5"
+                >
+                  <ProductCard key={index} product={item} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute -top-7 left-[94%] cursor-pointer " />
+            <CarouselNext className="absolute -top-7 right-0  cursor-pointer " />
+          </Carousel>
+        </div>
+      ) : null}
     </Layout>
   );
 }

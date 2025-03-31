@@ -17,7 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         return (
             <div
-                className={`${fullWidth ? "w-full" : "w-full sm:w-max"} ${props.hidden ? "h-0" : "h-12"} relative`}
+                className={`${fullWidth ? "w-full" : "w-full sm:w-max"} ${props.hidden ? "h-0" : "sm:h-12 h-9"} relative`}
             >
                 {type === "search" && (
                     <Search width={16} className={searchIconClassnames} />
@@ -36,7 +36,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                         :   type
                     }
                     className={cn(
-                        "flex h-12 w-full rounded-md border bg-background border-input px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foregroundfocus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+                        "flex sm:h-12 h-9 w-full rounded-md border bg-background border-input px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foregroundfocus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
                         className,
                         (type === "search" || !!prefixIcon) && "pr-8",
                         (type === "password" || !!suffix) && "pr-8",

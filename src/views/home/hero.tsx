@@ -47,7 +47,7 @@ export default function HeroSection() {
     useGet<CategoriesType[]>(CATEGORIES_TOP);
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-blue-900 py-16 text-white">
+    <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-blue-900 sm:py-16 py-8 text-white">
       {/* Background decorative elements */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-blue-500 blur-3xl"></div>
@@ -88,9 +88,9 @@ export default function HeroSection() {
         ))}
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="mx-auto mb-12 max-w-4xl text-center">
-          <h1 className="mb-6 text-5xl font-bold leading-tight ">
+      <div className="container relative z-10 mx-auto px-3 sm:p-0">
+        <div className="mx-auto sm:mb-12 mb-6 max-w-6xl text-center">
+          <h1 className="mb-6 sm:text-5xl text-2xl font-bold leading-tight ">
             Kerakli hujjatlarni{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
               oson toping{" "}
@@ -100,7 +100,7 @@ export default function HeroSection() {
               xarid qiling!
             </span>
           </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-blue-100 md:text-xl">
+          <p className="mx-auto sm:mb-8 mb-6 max-w-2xl sm:text-lg text-sm text-blue-100 md:text-xl">
             Sizga kerakli hujjatlarni tez va oson toping va sotib oling. Sifatli
             va ishonchli ma’lumotlarga ega bo‘ling! 📄💳
           </p>
@@ -119,26 +119,26 @@ export default function HeroSection() {
 
         {/* Categories */}
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-8 text-center text-2xl font-bold">Kategoriyalar</h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+          <h2 className="sm:mb-6 mb-4 text-center sm:text-2xl text-xl font-bold">Kategoriyalar</h2>
+          <div className="grid grid-cols-2 sm:gap-6  gap-3 md:grid-cols-3 lg:grid-cols-6">
             {isSuccess &&
               categories?.length > 0 &&
               categories.map((category, index: number) => (
                 <Link
                   href={`/category/${category.slug}`}
                   key={category.name}
-                  className="group flex flex-col items-center rounded-xl bg-white/10 p-6 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/20 hover:shadow-lg hover:shadow-blue-500/20"
+                  className="group flex flex-col items-center rounded-xl bg-white/10 sm:p-6 p-3 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/20 hover:shadow-lg hover:shadow-blue-500/20"
                 >
                   <div
                     className={cn(
-                      `mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br
+                      `sm:mb-4 mb-3 flex sm:h-20 sm:w-20 h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br
                         p-4 shadow-lg transition-transform duration-300 group-hover:scale-110`,
                       categoryColor[index]
                     )}
                   >
-                    <span className="text-3xl">{category.icon}</span>
+                    <span className="sm:text-3xl text-2xl">{category.icon}</span>
                   </div>
-                  <span className="mb-2 text-md font-bold">
+                  <span className=" md:text-md text-sm font-bold">
                     {category.name}
                   </span>
                 </Link>
@@ -147,16 +147,14 @@ export default function HeroSection() {
         </div>
 
         {/* Popular formats */}
-        <div className="mx-auto mt-16 max-w-4xl">
-          <h2 className="mb-6 text-center text-2xl font-bold">
-            Mashhur formatlar
-          </h2>
+        <div className="mx-auto mt-12 max-w-4xl">
           <div className="flex flex-wrap justify-center gap-3">
             {fileFormats.map((item) => (
               <Link
                 href={`/format/${item.format}`}
                 key={item.format}
-                className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white/10 px-6 py-3 font-medium backdrop-blur-md transition-all duration-300 hover:bg-white/20"
+                className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white/10
+                 sm:px-6 sm:py-3 px-4 py-1 font-medium backdrop-blur-md transition-all duration-300 hover:bg-white/20"
               >
                 <span
                   className={`absolute left-0 top-0 h-full w-1 ${

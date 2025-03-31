@@ -21,7 +21,6 @@ export default function ParamInput({
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   function handlePush(val: string | undefined) {
-    if (!val || val.trim() === "") return;
     const newQuery = clearOther
       ? { [paramName]: val }
       : { ...query, [paramName]: val };
@@ -54,6 +53,8 @@ export default function ParamInput({
     }, SEARCH_DEBOUNCE_TIME);
   }
 
+
+   
   return (
     <Input
       defaultValue={query[paramName!] as string}

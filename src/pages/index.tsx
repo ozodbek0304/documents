@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <Layout>
       <Hero />
-      <div className="container mx-auto pt-12 space-y-12">
+      <div className="container mx-auto pt-12 sm:px-0 px-3 space-y-12">
         {isSuccess &&
           data?.length > 0 &&
           data.map((item) => (
@@ -49,11 +49,11 @@ export default function Home() {
               <Link
                 key={item.slug}
                 href={`/category/${item.slug}`}
-                className="flex items-center gap-3 py-2 border-b border-border group hover:border-blue-500 transition-all duration-300"
+                className="flex items-center gap-3 sm:py-2 py-1 border-b border-border group hover:border-blue-500 transition-all duration-300"
               >
-                <span className="text-3xl">{item.icon}</span>
-                <h2 className="text-2xl font-bold">{item.name}</h2>
-                <ArrowRight className="h-6 w-6 ml-auto text-muted-foreground opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary transition-all duration-300" />
+                <span className="sm:text-3xl text-2xl">{item.icon}</span>
+                <h2 className="sm:text-2xl text-xl font-bold">{item.name}</h2>
+                <ArrowRight className="sm:h-6 sm:w-6 w-4 h-4 ml-auto text-muted-foreground opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary transition-all duration-300" />
               </Link>
               <ProductList documents={item.products} />
             </div>
