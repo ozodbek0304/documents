@@ -21,7 +21,7 @@ const bgGradients: { [key: string]: string } = {
 export default function ProductCard({ product }: { product: Document }) {
   return (
     <Link
-      href={"/product/1"}
+      href={`/product/${product.slug}`}
       key={product.id}
       className={cn(
         `group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 
@@ -52,7 +52,7 @@ export default function ProductCard({ product }: { product: Document }) {
         </div>
       </div>
 
-      <div className="p-3 bg-gray-50">
+      <div className="p-3 bg-gray-50 rounded-b-xl">
         {/* Title */}
         <h3 className="mb-3 text-sm font-semibold text-gray-800 line-clamp-2">
           {product.name}

@@ -13,12 +13,21 @@ export interface Document {
   price: number;
   category_id: string;
   category_name: string;
+  category: {
+    id: string;
+    name: string;
+    slug: string;
+  };
   poster: string;
   ext: string;
   view_count: number;
   sold_count: number;
   size: number;
   pages: number;
+  images: {
+    id: number;
+    image: string;
+  }[];
 }
 
 export default function ProductList({ documents }: Props) {
