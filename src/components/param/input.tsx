@@ -6,20 +6,22 @@ import { SEARCH_DEBOUNCE_TIME } from "@/constants/components";
 type Props = {
   paramName?: string;
   clearOther?: boolean;
+  redirectPath?: string;
 } & InputProps;
 
 export default function ParamInput({
   paramName = "search",
   placeholder = "Qidirish..",
   clearOther,
+  redirectPath,
   ...props
 }: Props) {
   const { push, query } = useRouter();
-
   const inputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   function handlePush(val: string | undefined) {
+    if (!val || val.trim() === "") return;
     const newQuery = clearOther
       ? { [paramName]: val }
       : { ...query, [paramName]: val };
@@ -27,12 +29,14 @@ export default function ParamInput({
     if (!val) {
       delete newQuery[paramName];
     }
-
-    return push({ query: newQuery });
+    return push({
+      pathname: redirectPath || "/",
+      query: newQuery,
+    });
   }
 
   function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       const searchVal = inputRef.current?.value;
       handlePush(searchVal);
     }

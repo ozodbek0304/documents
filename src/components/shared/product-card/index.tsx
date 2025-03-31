@@ -17,6 +17,7 @@ const bgGradients: { [key: string]: string } = {
   pdf: "from-red-50 to-red-100 border-red-400",
 };
 
+
 export default function ProductCard({ product }: { product: Document }) {
   return (
     <Link

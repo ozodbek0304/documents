@@ -8,9 +8,11 @@ type Props = {
 export interface Document {
   id: string;
   name: string;
-  description: string;
+  desc: string;
+  slug: string;
   price: number;
   category_id: string;
+  category_name: string;
   poster: string;
   ext: string;
   view_count: number;

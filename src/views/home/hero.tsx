@@ -32,7 +32,7 @@ export const fileColors: { [key: string]: string } = {
   pdf: "bg-red-500",
 };
 
-const fileFormats = [
+ export const fileFormats = [
   { format: "pdf", icon: "📄" },
   { format: "doc", icon: "📝" },
   { format: "docx", icon: "📝" },
@@ -106,18 +106,14 @@ export default function HeroSection() {
           </p>
 
           {/* Search bar */}
-          <div className="relative mx-auto mb-12 max-w-2xl">
-            <div className="relative flex items-center  rounded-full bg-white/10 backdrop-blur-md">
-              <ParamInput
-                fullWidth
-                type="text"
-                placeholder="Qidirish..."
-                className="w-full rounded-full border-0  bg-transparent px-6 py-4 text-white placeholder-blue-200 outline-none ring-0 focus:border focus:border-blue-400"
-              />
-              <Button className="absolute right-0 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 p-3 text-white shadow-lg transition-transform hover:scale-105">
-                <Search size={20} />
-              </Button>
-            </div>
+          <div className="rounded-full bg-white/10 backdrop-blur-md max-w-2xl mx-auto">
+            <ParamInput
+              redirectPath="/search"
+              fullWidth
+              type="search"
+              placeholder="Qidirish..."
+              className="w-full rounded-full focus-visible:ring-1 focus-visible:ring-white border-none  bg-transparent px-6  text-white placeholder:text-white "
+            />
           </div>
         </div>
 
@@ -163,7 +159,9 @@ export default function HeroSection() {
                 className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white/10 px-6 py-3 font-medium backdrop-blur-md transition-all duration-300 hover:bg-white/20"
               >
                 <span
-                  className={`absolute left-0 top-0 h-full w-1 ${fileColors[item.format]}`}
+                  className={`absolute left-0 top-0 h-full w-1 ${
+                    fileColors[item.format]
+                  }`}
                 ></span>
                 <span>{item.icon}</span>
                 <span>{item.format}</span>
