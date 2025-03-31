@@ -92,7 +92,7 @@ export default function ProductCard({ product }: { product: Document }) {
           </div>
           <div className="sm:flex hidden items-center gap-1.5 text-gray-500">
             <Download className={cn("h-4 w-4")} />
-            <span className="text-xs font-medium">{product.sold_count}</span>
+            <span className="text-xs font-medium">{product.sold_count || 0}</span>
           </div>
         </div>
       </div>

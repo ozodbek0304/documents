@@ -33,7 +33,7 @@ export default function ProductImageSlider({
             width={1200}
             height={1200}
             alt={`Product image ${image.id}`}
-            className="rounded-xl w-[90%] sm:w-[80%] mb-3"
+            className="rounded-xl  w-[90%] sm:w-[80%] mb-3"
             priority
           />
         ))}
