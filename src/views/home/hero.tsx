@@ -1,17 +1,50 @@
 import ParamInput from "@/components/param/input";
 import { Button } from "@/components/ui/button";
+import { useGet } from "@/hooks/useGet";
+import { CATEGORIES_TOP } from "@/lib/api-endpoints";
+import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import Link from "next/link";
 
+export type CategoriesType = {
+  id: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const categoryColor: Record<number, string> = {
+  0: "from-blue-500 to-indigo-600",
+  1: "from-emerald-500 to-teal-600",
+  2: "from-rose-500 to-pink-600",
+  3: "from-amber-500 to-yellow-600",
+  4: "from-purple-500 to-violet-600",
+  5: "from-cyan-500 to-sky-600",
+};
+
+export const fileColors: { [key: string]: string } = {
+  doc: "bg-blue-500",
+  docx: "bg-blue-500",
+  xls: "bg-green-500",
+  xlsx: "bg-green-500",
+  ppt: "bg-orange-500",
+  pptx: "bg-orange-400",
+  pdf: "bg-red-500",
+};
+
+const fileFormats = [
+  { format: "pdf", icon: "📄" },
+  { format: "doc", icon: "📝" },
+  { format: "docx", icon: "📝" },
+  { format: "xls", icon: "📊" },
+  { format: "xlsx", icon: "📋" },
+  { format: "ppt", icon: "🎯" },
+  { format: "pptx", icon: "📽️" },
+];
+
 export default function HeroSection() {
-  const categories = [
-    { name: "Ta'lim", icon: "📚", color: "from-blue-500 to-indigo-600" },
-    { name: "Biznes", icon: "💼", color: "from-emerald-500 to-teal-600" },
-    { name: "Tibbiyot", icon: "🏥", color: "from-rose-500 to-pink-600" },
-    { name: "Huquq", icon: "⚖️", color: "from-amber-500 to-yellow-600" },
-    { name: "Adabiyot", icon: "📖", color: "from-purple-500 to-violet-600" },
-    { name: "Ilmiy ishlar", icon: "🔬", color: "from-cyan-500 to-sky-600" },
-  ];
+  const { data: categories, isSuccess } =
+    useGet<CategoriesType[]>(CATEGORIES_TOP);
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-blue-900 py-16 text-white">
@@ -58,9 +91,9 @@ export default function HeroSection() {
       <div className="container relative z-10 mx-auto px-4">
         <div className="mx-auto mb-12 max-w-4xl text-center">
           <h1 className="mb-6 text-5xl font-bold leading-tight ">
-            Kerakli hujjatlarni {" "}
+            Kerakli hujjatlarni{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              oson toping {" "}
+              oson toping{" "}
             </span>{" "}
             va{" "}
             <span className="bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
@@ -86,48 +119,34 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="mb-12">
-            <button className="group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 font-medium text-white shadow-lg transition-all duration-300 hover:shadow-blue-500/30">
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="relative"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="17 8 12 3 7 8" />
-                <line x1="12" y1="3" x2="12" y2="15" />
-              </svg>
-              <span className="relative">Hujjat yuklash</span>
-            </button>
-          </div>
         </div>
 
         {/* Categories */}
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-8 text-center text-2xl font-bold">Kategoriyalar</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-            {categories.map((category) => (
-              <Link
-                href={`/category/${category.name.toLowerCase()}`}
-                key={category.name}
-                className="group flex flex-col items-center rounded-xl bg-white/10 p-6 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/20 hover:shadow-lg hover:shadow-blue-500/20"
-              >
-                <div
-                  className={`mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${category.color} p-4 shadow-lg transition-transform duration-300 group-hover:scale-110`}
+            {isSuccess &&
+              categories?.length > 0 &&
+              categories.map((category, index: number) => (
+                <Link
+                  href={`/category/${category.slug}`}
+                  key={category.name}
+                  className="group flex flex-col items-center rounded-xl bg-white/10 p-6 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/20 hover:shadow-lg hover:shadow-blue-500/20"
                 >
-                  <span className="text-3xl">{category.icon}</span>
-                </div>
-                <span className="mb-2 text-lg font-bold">{category.name}</span>
-              </Link>
-            ))}
+                  <div
+                    className={cn(
+                      `mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br
+                        p-4 shadow-lg transition-transform duration-300 group-hover:scale-110`,
+                      categoryColor[index]
+                    )}
+                  >
+                    <span className="text-3xl">{category.icon}</span>
+                  </div>
+                  <span className="mb-2 text-md font-bold">
+                    {category.name}
+                  </span>
+                </Link>
+              ))}
           </div>
         </div>
 
@@ -137,20 +156,14 @@ export default function HeroSection() {
             Mashhur formatlar
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
-            {[
-              { format: ".pdf", color: "bg-red-500", icon: "📄" },
-              { format: ".doc", color: "bg-blue-500", icon: "📝" },
-              { format: ".ppt", color: "bg-orange-500", icon: "🎯" },
-              { format: ".xls", color: "bg-green-500", icon: "📊" },
-              { format: ".txt", color: "bg-gray-500", icon: "📋" },
-            ].map((item) => (
+            {fileFormats.map((item) => (
               <Link
-                href={`/format/${item.format.replace(".", "")}`}
+                href={`/format/${item.format}`}
                 key={item.format}
                 className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white/10 px-6 py-3 font-medium backdrop-blur-md transition-all duration-300 hover:bg-white/20"
               >
                 <span
-                  className={`absolute left-0 top-0 h-full w-1 ${item.color}`}
+                  className={`absolute left-0 top-0 h-full w-1 ${fileColors[item.format]}`}
                 ></span>
                 <span>{item.icon}</span>
                 <span>{item.format}</span>

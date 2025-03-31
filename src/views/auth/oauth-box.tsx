@@ -5,13 +5,30 @@ import React, { useState } from "react";
 import ConfimForm from "./confirm-form";
 import { usePost } from "@/hooks/usePost";
 import { LOGIN_EMAIL } from "@/lib/api-endpoints";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 export default function OAuthBox() {
   const [state, setSetate] = useState<string>("");
-  const { mutate, isPending } = usePost(LOGIN_EMAIL);
+  const { mutate, isPending } = usePost(LOGIN_EMAIL, {
+    onSuccess: () => {
+      toast.success("Successfully logged in");
+    },
+  });
+  const { data: session } = useSession();
 
-  const handleSubmit = () => {
-    mutate(LOGIN_EMAIL, "vals");
+  const handleGoogleLogin = async () => {
+    await signOut({ redirect: false });
+    const result = await signIn("google", {
+      redirect: false,
+      prompt: "select_account",
+    });
+
+    if (result?.error) {
+      toast.error("Kirishda xatolik yuz berdi!");
+    } else if (session?.user?.email) {
+      mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
+    }
   };
 
   return (
@@ -22,8 +39,6 @@ export default function OAuthBox() {
     >
       {state === "telegram" ? (
         <ConfimForm />
-      ) : state === "email" ? (
-        <div>Email</div>
       ) : (
         <div className="flex flex-col items-center justify-center gap-2 mt-4 ">
           <Button
@@ -45,7 +60,7 @@ export default function OAuthBox() {
 
           <Button
             loading={isPending}
-            onClick={() => setSetate("email")}
+            onClick={handleGoogleLogin}
             variant={"secondary"}
             className="w-full cursor-pointer"
           >

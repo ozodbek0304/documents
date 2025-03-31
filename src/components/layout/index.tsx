@@ -8,27 +8,27 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  if (isLoading) {
-    return (
-      <div className="flex h-screen w-full items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900">
-        <div className="flex flex-col items-center">
-          <div className="mb-4 h-16 w-16 animate-spin rounded-full border-b-2 border-t-2 border-blue-200"></div>
-          <p className="text-blue-200">Yuklanmoqda...</p>
-        </div>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex h-screen w-full items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900">
+  //       <div className="flex flex-col items-center">
+  //         <div className="mb-4 h-16 w-16 animate-spin rounded-full border-b-2 border-t-2 border-blue-200"></div>
+  //         <p className="text-blue-200">Yuklanmoqda...</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="flex flex-col min-h-screen pt-[52px]">
