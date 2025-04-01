@@ -31,6 +31,7 @@ export default function ConfimForm() {
     if (codeValue?.length === 6) {
       form.handleSubmit(handleSubmit)();
     }
+    // eslint-disable-next-line
   }, [codeValue]);
 
   return (

@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 export default function ProductImageSlider({
   images,
 }: {
-  images: { image: string; id: number }[];
+  images: { [key: string]: string }[];
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -26,13 +26,13 @@ export default function ProductImageSlider({
         ref={scrollRef}
         className="h-[320px] sm:h-[500px]  overflow-y-scroll flex flex-col items-center rounded-xl p-3 bg-gray-50"
       >
-        {images.map((image) => (
+        {images.map((image, index) => (
           <Image
-            key={image.id}
-            src={image.image}
+            key={index}
+            src={image as any}
             width={1200}
             height={1200}
-            alt={`Product image ${image.id}`}
+            alt={`Product image ${index}`}
             className="rounded-xl  w-[90%] sm:w-[80%] mb-3"
             priority
           />

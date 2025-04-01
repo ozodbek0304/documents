@@ -45,9 +45,8 @@ export default function Home() {
         {isSuccess &&
           data?.length > 0 &&
           data.map((item) => (
-            <div className="space-y-4">
+            <div className="space-y-4" key={item.slug}>
               <Link
-                key={item.slug}
                 href={`/category/${item.slug}`}
                 className="flex items-center gap-3 sm:py-2 py-1 border-b border-border group hover:border-blue-500 transition-all duration-300"
               >

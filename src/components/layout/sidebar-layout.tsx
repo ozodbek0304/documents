@@ -1,5 +1,5 @@
 import React from "react";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
+import { SidebarInset, SidebarProvider } from "../ui/sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,

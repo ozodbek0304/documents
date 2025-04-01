@@ -26,7 +26,6 @@ const Modal = ({
     children,
     modalKey = "default",
     className = "",
-    size = "lg",
     onClose,
 }: Props) => {
     const { isOpen, closeModal } = useModal(modalKey)
@@ -42,7 +41,7 @@ const Modal = ({
         <Dialog open={isOpen} onOpenChange={handleClose}>
             {isOpen && (
                 <DialogContent
-                    className={`max-w-${size} ` + className}
+                    className={className}
                     aria-describedby=""
                 >
                     {title && <DialogTitle>{title}</DialogTitle>}

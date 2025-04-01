@@ -31,7 +31,7 @@ export default function DocumentCreatePage() {
             label="Fayl"
             methods={form}
             name="file"
-            type="file" 
+            type="file"
           />
           <FormInput required label="Nomi" methods={form} name="name" />
           <FormInput required label="Narxi" methods={form} name="price" />

@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import {
-  ArrowDown,
   BadgeDollarSign,
   BookOpen,
   ChartBarStacked,
@@ -14,12 +13,19 @@ import React from "react";
 import { Document } from "../product-list";
 import { Separator } from "@/components/ui/separator";
 import { fileColors } from "@/views/home/hero";
+import { useModal } from "@/hooks/use-modal";
+import Modal from "@/components/custom/modal";
+import { DocumentPurchase } from "@/views/product-detail/payment";
 
 export default function ProductAction({ product }: { product: Document }) {
+  const { openModal } = useModal();
+
   return (
     <div className="w-full space-y-3">
       <div className="bg-white rounded-xl p-5 shadow-sm border ">
-        <h3 className="font-bold medium filter text-lg mb-4">Hujjat ma'lumotlari</h3>
+        <h3 className="font-bold medium filter text-lg mb-4">
+          Hujjat ma'lumotlari
+        </h3>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
@@ -97,9 +103,18 @@ export default function ProductAction({ product }: { product: Document }) {
           </span>
         </div>
         <Separator />
-        <Button className="w-full font-mediumI think hello nugget medium rounded-full bg-gradient-to-r from-blue-600
-       to-indigo-600 px-5 py-2 text-white shadow-md cursor-pointer transition-transform hover:scale-105">Hoziroq sotib olish</Button>
+        <Button
+          onClick={openModal}
+          className="w-full font-mediumI think hello nugget medium rounded-full bg-gradient-to-r from-blue-600
+       to-indigo-600 px-5 py-2 text-white shadow-md cursor-pointer transition-transform hover:scale-105"
+        >
+          Hoziroq sotib olish
+        </Button>
       </div>
+
+      <Modal className="!max-w-[600px]">
+        <DocumentPurchase product={product} />
+      </Modal>
     </div>
   );
 }

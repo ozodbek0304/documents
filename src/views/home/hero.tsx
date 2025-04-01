@@ -1,9 +1,7 @@
 import ParamInput from "@/components/param/input";
-import { Button } from "@/components/ui/button";
 import { useGet } from "@/hooks/useGet";
 import { CATEGORIES_TOP } from "@/lib/api-endpoints";
 import { cn } from "@/lib/utils";
-import { Search } from "lucide-react";
 import Link from "next/link";
 
 export type CategoriesType = {
@@ -11,6 +9,7 @@ export type CategoriesType = {
   name: string;
   icon: string;
   slug: string;
+  color: string;
 };
 
 export const categoryColor: Record<number, string> = {
@@ -32,7 +31,7 @@ export const fileColors: { [key: string]: string } = {
   pdf: "bg-red-500",
 };
 
- export const fileFormats = [
+export const fileFormats = [
   { format: "pdf", icon: "📄" },
   { format: "doc", icon: "📝" },
   { format: "docx", icon: "📝" },
@@ -119,7 +118,9 @@ export default function HeroSection() {
 
         {/* Categories */}
         <div className="mx-auto max-w-6xl">
-          <h2 className="sm:mb-6 mb-4 text-center sm:text-2xl text-xl font-bold">Kategoriyalar</h2>
+          <h2 className="sm:mb-6 mb-4 text-center sm:text-2xl text-xl font-bold">
+            Kategoriyalar
+          </h2>
           <div className="grid grid-cols-2 sm:gap-6  gap-3 md:grid-cols-3 lg:grid-cols-6">
             {isSuccess &&
               categories?.length > 0 &&
@@ -136,7 +137,9 @@ export default function HeroSection() {
                       categoryColor[index]
                     )}
                   >
-                    <span className="sm:text-3xl text-2xl">{category.icon}</span>
+                    <span className="sm:text-3xl text-2xl">
+                      {category.icon}
+                    </span>
                   </div>
                   <span className=" md:text-md text-sm font-bold">
                     {category.name}
