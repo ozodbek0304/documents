@@ -17,7 +17,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const { query } = useRouter();
+  const { query, asPath } = useRouter();
 
   return (
     <div className="flex flex-col min-h-screen pt-[52px]">
@@ -29,19 +29,21 @@ const Layout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Header />
-      <div className="container mx-auto mt-5">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem className="hidden md:block">
-              <BreadcrumbLink href="/dashboard">Asosiy sahifa</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator className="hidden md:block" />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{query?.slug}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+      {asPath !== "/" && (
+        <div className="container mx-auto mt-5">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem className="hidden md:block">
+                <BreadcrumbLink href="/dashboard">Asosiy sahifa</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{query?.slug}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      )}
       <main className="flex-grow">{children}</main>
       <Footer />
     </div>

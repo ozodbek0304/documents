@@ -149,3 +149,8 @@ body {
   animation: float 15s ease-in-out infinite;
 }
 
+
+
+#nprogress .bar {
+  background: linear-gradient(to right, #4579ea, #5c56d7)!important;
+}
