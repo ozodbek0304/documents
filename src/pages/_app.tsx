@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <NextNProgress
           color="transparent"
           startPosition={0.3}
-          stopDelayMs={200}
+          stopDelayMs={100}
           height={4}
           options={{ easing: "ease", speed: 500 }}
         />
