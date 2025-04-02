@@ -21,10 +21,10 @@ export default function ProductImageSlider({
   }, [images]);
 
   return (
-    <div className="border rounded-xl shadow-smI think hello nugget medium filter Marta Kan Marta Marta Mart Ahmed similar">
+    <div className="border rounded-xl shadow-sm ">
       <div
         ref={scrollRef}
-        className="h-[320px] sm:h-[500px]  overflow-y-scroll flex flex-col items-center rounded-xl p-3 bg-gray-50"
+        className="h-[320px] sm:h-[500px] py-2 overflow-y-scroll flex flex-col items-center rounded-xl p-3 bg-gray-50"
       >
         {images.map((image, index) => (
           <Image

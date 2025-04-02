@@ -2,33 +2,22 @@ import { ReactNode } from "react";
 import Header from "../header";
 import Footer from "../footer";
 import Head from "next/head";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "../ui/breadcrumb";
+import { useRouter } from "next/router";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // useEffect(() => {
-
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex h-screen w-full items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900">
-  //       <div className="flex flex-col items-center">
-  //         <div className="mb-4 h-16 w-16 animate-spin rounded-full border-b-2 border-t-2 border-blue-200"></div>
-  //         <p className="text-blue-200">Yuklanmoqda...</p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  const { query } = useRouter();
 
   return (
     <div className="flex flex-col min-h-screen pt-[52px]">
@@ -40,6 +29,19 @@ const Layout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Header />
+      <div className="container mx-auto mt-5">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem className="hidden md:block">
+              <BreadcrumbLink href="/dashboard">Asosiy sahifa</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator className="hidden md:block" />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{query?.slug}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <main className="flex-grow">{children}</main>
       <Footer />
     </div>

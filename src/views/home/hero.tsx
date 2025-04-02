@@ -1,4 +1,5 @@
 import ParamInput from "@/components/param/input";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useGet } from "@/hooks/useGet";
 import { CATEGORIES_TOP } from "@/lib/api-endpoints";
 import { cn } from "@/lib/utils";
@@ -42,8 +43,11 @@ export const fileFormats = [
 ];
 
 export default function HeroSection() {
-  const { data: categories, isSuccess } =
-    useGet<CategoriesType[]>(CATEGORIES_TOP);
+  const {
+    data: categories,
+    isSuccess,
+    isLoading,
+  } = useGet<CategoriesType[]>(CATEGORIES_TOP);
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-blue-900 sm:py-16 py-8 text-white">
@@ -122,30 +126,44 @@ export default function HeroSection() {
             Kategoriyalar
           </h2>
           <div className="grid grid-cols-2 sm:gap-6  gap-3 md:grid-cols-3 lg:grid-cols-6">
-            {isSuccess &&
-              categories?.length > 0 &&
-              categories.map((category, index: number) => (
-                <Link
-                  href={`/category/${category.slug}`}
-                  key={category.name}
-                  className="group flex flex-col items-center rounded-xl bg-white/10 sm:p-6 p-3 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/20 hover:shadow-lg hover:shadow-blue-500/20"
-                >
+            {isLoading
+              ? Array.from({ length: 6 }).map((_, index) => (
                   <div
-                    className={cn(
-                      `sm:mb-4 mb-3 flex sm:h-20 sm:w-20 h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br
-                        p-4 shadow-lg transition-transform duration-300 group-hover:scale-110`,
-                      categoryColor[index]
-                    )}
+                    key={index}
+                    className="group flex flex-col items-center rounded-xl bg-white/10 sm:p-6 p-3 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/20 hover:shadow-lg hover:shadow-blue-500/20"
                   >
-                    <span className="sm:text-3xl text-2xl">
-                      {category.icon}
-                    </span>
+                    <Skeleton
+                      className="sm:mb-4 mb-3 bg-muted flex sm:h-20 sm:w-20 h-16 w-16 items-center justify-center rounded-full
+       p-4 shadow-lg"
+                    />
+                    <Skeleton className="h-3 w-full mb-2" />
+                    <Skeleton className="h-3 w-full" />
                   </div>
-                  <span className=" md:text-md text-sm font-bold">
-                    {category.name}
-                  </span>
-                </Link>
-              ))}
+                ))
+              : isSuccess &&
+                categories?.length > 0 &&
+                categories.map((category, index: number) => (
+                  <Link
+                    href={`/category/${category.slug}`}
+                    key={category.name}
+                    className="group flex flex-col items-center rounded-xl bg-white/10 sm:p-6 p-3 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/20 hover:shadow-lg hover:shadow-blue-500/20"
+                  >
+                    <div
+                      className={cn(
+                        `sm:mb-4 mb-3 flex sm:h-20 sm:w-20 h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br
+                        p-4 shadow-lg transition-transform duration-300 group-hover:scale-110`,
+                        categoryColor[index]
+                      )}
+                    >
+                      <span className="sm:text-3xl text-2xl">
+                        {category.icon}
+                      </span>
+                    </div>
+                    <span className=" md:text-md text-sm font-bold">
+                      {category.name}
+                    </span>
+                  </Link>
+                ))}
           </div>
         </div>
 

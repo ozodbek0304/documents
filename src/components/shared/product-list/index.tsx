@@ -13,6 +13,7 @@ export interface Document {
   price: number;
   category_id: string;
   category_name: string;
+  tags: string[];
   category: {
     id: string;
     name: string;

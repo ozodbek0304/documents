@@ -55,6 +55,7 @@ export default function ProductPage({ product, productSimilar, error }: Props) {
         <title>{product.name || "Product Detail Page"}</title>
       </Head>
       <ProductDetail product={product} />
+      
       {productSimilar?.length > 0 ? (
         <div className="container mx-auto mt-12 relative">
           <h1 className="text-2xl font-bold my-3">O'xshash mahsulotlar</h1>

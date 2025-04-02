@@ -7,6 +7,10 @@ import { useRouter } from "next/router";
 import { Document } from "@/components/shared/product-list";
 import ProductCard from "@/components/shared/product-card";
 import ParamInput from "@/components/param/input";
+import DocumentListingSkeleton from "@/components/skeletion/product-sekeletion";
+
+
+
 
 const CategoryPage = () => {
   const { data } = useGet(CATEGORIES);
@@ -14,7 +18,7 @@ const CategoryPage = () => {
   const currentSlug = Array.isArray(query.slug)
     ? query.slug[0]
     : query.slug || "";
-  const { data: document, isSuccess } = useGet<{
+  const { data: document, isSuccess ,isLoading} = useGet<{
     next_cursor: number;
     products: Document[];
   }>(`${PRODUCTS_HOME}/${currentSlug}`, {
@@ -37,8 +41,11 @@ const CategoryPage = () => {
         <div className="col-span-1 hidden lg:block">
           <CategorySidebar categories={data || []} currentSlug={currentSlug} />
         </div>
-        <div className="lg:col-span-3 col-span-4 items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 py-2 gap-x-3">
-          {isSuccess &&
+        <div className="lg:col-span-3 col-span-4 items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 py-2 gap-3">
+          {isLoading ? 
+           <DocumentListingSkeleton length={12}/> :
+          
+          isSuccess &&
             document.products.length > 0 &&
             document.products.map((item, index) => (
               <ProductCard key={index} product={item} />

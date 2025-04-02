@@ -15,7 +15,7 @@ export default function UserMenu() {
         className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600
        to-indigo-600 px-5 py-2 font-medium text-white shadow-md cursor-pointer transition-transform hover:scale-105"
       >
-        <LogIn />
+        <LogIn size={18} />
         Kirish
       </Button>
       <OAuthBox/>
