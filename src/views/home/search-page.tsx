@@ -6,15 +6,16 @@ import { useGet } from "@/hooks/useGet";
 import { PRODUCTS_SEARCH } from "@/lib/api-endpoints";
 import { Document } from "@/components/shared/product-list";
 import Link from "next/link";
+import Image from "next/image";
 
 const fileType: { [key: string]: string } = {
-  pdf: "📄",
-  doc: "📝",
-  docx: "📝",
-  xls: "📊",
-  xlsx: "📋",
-  ppt: "🎯",
-  pptx: "📽️",
+  pdf: "/format-icon/pdf.webp",
+  doc: "/format-icon/doc.png",
+  docx: "/format-icon/docx.png",
+  xls: "/format-icon/xls.png",
+  xlsx: "/format-icon/xlsx.png",
+  ppt: "/format-icon/ppt.png",
+  pptx: "/format-icon/pptx.png",
 };
 
 export default function DocumentSearch() {
@@ -56,8 +57,13 @@ export default function DocumentSearch() {
               key={doc.id}
               className="flex items-center p-3 border cursor-pointer rounded-lg hover:bg-muted/50"
             >
-              <div className="p-1 bg-muted rounded-md mr-4">
-                <span className="text-3xl">{fileType[doc.ext]}</span>
+              <div className=" rounded-md mr-4 flex flex-col">
+                <Image
+                  src={fileType[doc.ext]}
+                  width={40}
+                  height={40}
+                  alt={doc.name}
+                />
               </div>
               <div className="flex-grow">
                 <h3 className="font-medium">{doc.name}</h3>
