@@ -63,6 +63,7 @@ export default function DocumentSearch() {
                   width={40}
                   height={40}
                   alt={doc.name}
+                  priority
                 />
               </div>
               <div className="flex-grow">

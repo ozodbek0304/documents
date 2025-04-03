@@ -51,6 +51,7 @@ export default function OAuthBox() {
                 src={"/assets/telegram.png"}
                 width={20}
                 height={20}
+                priority
                 alt="Telegram orqali kiring"
                 className="mr-3"
               />
@@ -69,6 +70,7 @@ export default function OAuthBox() {
                 src={"/assets/google.png"}
                 width={20}
                 height={20}
+                priority
                 alt="Telegram orqali kiring"
                 className="mr-1"
               />

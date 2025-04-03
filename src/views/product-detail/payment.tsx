@@ -50,6 +50,7 @@ export function DocumentPurchase({ product }: { product: Document }) {
                   src="/payment/click.png"
                   alt="Click"
                   width={240}
+                  priority
                   height={240}
                    className="w-[222px] h-[113px] object-contain"
 
@@ -71,6 +72,7 @@ export function DocumentPurchase({ product }: { product: Document }) {
                   alt="Payme"
                   width={240}
                   height={240}
+                  priority
                 />
               </Label>
             </div>
