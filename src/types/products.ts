@@ -19,7 +19,7 @@ export interface Document {
     sold_count: number;
     size: number;
     pages: number;
-    simmilar: Document[];
+    similar: Document[];
     images: {
       [key: string]: string;
     }[];
