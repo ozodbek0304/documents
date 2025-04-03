@@ -55,7 +55,7 @@ export default function DocumentSearch() {
             <Link
               href={`/product/${doc.slug}`}
               key={doc.id}
-              className="flex sm:items-center flex-col sm:flex-row sm:gap-3 gap-2 p-3 border cursor-pointer rounded-lg hover:bg-muted/50"
+              className="flex sm:items-center justify-between flex-col sm:flex-row sm:gap-3 gap-2 p-3 border cursor-pointer rounded-lg hover:bg-muted/50"
             >
               <div className="flex items-center gap-3">
                 <div className=" rounded-md  flex flex-col">
