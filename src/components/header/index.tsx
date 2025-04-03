@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="fixed w-full z-40 bg-background top-0">
       <div className="py-2 shadow-sm">
-        <div className="container mx-auto">
+        <div className="container mx-auto lg:px-0 px-3">
           <div className="flex items-center gap-2">
             <div className="logo-box block flex-1">
               <Link href={"/"} className="text-2xl flex font-bold items-center gap-2">

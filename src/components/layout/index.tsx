@@ -30,14 +30,14 @@ const Layout = ({ children }: LayoutProps) => {
       </Head>
       <Header />
       {asPath !== "/" && (
-        <div className="container mx-auto mt-5">
+        <div className="container mx-auto sm:p-0 px-3 sm:mt-5 mt-4">
           <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
+            <BreadcrumbList className="flex items-center flex-nowrap ">
+              <BreadcrumbItem className="whitespace-nowrap">
                 <BreadcrumbLink href="/dashboard">Asosiy sahifa</BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem className="line-clamp-1">
                 <BreadcrumbPage>{query?.slug}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>

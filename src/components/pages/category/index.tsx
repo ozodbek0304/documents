@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { CategoriesType } from "@/views/home/hero";
+import { useCatalogStore } from "@/store/catalogStorge";
 
 interface CategorySidebarProps {
   categories: CategoriesType[];
@@ -11,7 +12,7 @@ export default function CategorySidebar({
   categories,
   currentSlug,
 }: CategorySidebarProps) {
-
+  const { toggleOpen } = useCatalogStore();
 
   return (
     <div>
@@ -21,6 +22,7 @@ export default function CategorySidebar({
             <Link
               key={category.slug}
               href={`/category/${category.slug}`}
+              onClick={toggleOpen}
               className={cn(
                 "flex items-center gap-3 rounded-md px-3 border py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
                 currentSlug === category.slug

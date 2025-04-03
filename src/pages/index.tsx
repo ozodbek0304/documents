@@ -76,7 +76,7 @@ export default function Home({ data, categories }: Props) {
   return (
     <Layout>
       <Hero categories={categories} />
-      <div className="container mx-auto pt-12 sm:px-0 px-3 space-y-12">
+      <div className="container mx-auto pt-12 lg:px-0 px-3 space-y-12">
         {data?.length > 0 && (
           <React.Fragment>
             {data.map((item) => (

@@ -53,8 +53,8 @@ export default function ProductPage({ product, error }: Props) {
       <ProductDetail product={product} />
 
       {product?.similar?.length > 0 ? (
-        <div className="container mx-auto mt-12 relative">
-          <h1 className="text-2xl font-bold my-3">O'xshash mahsulotlar</h1>
+        <div className="container mx-auto lg:mt-12 mt-8 relative lg:px-0 px-3">
+          <h1 className="lg:text-2xl font-bold my-3">O'xshash mahsulotlar</h1>
           <Carousel
             opts={{
               align: "center",

@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
 type ModalState = {
-    openModals: Record<string, boolean>; // Har bir modal uchun holat
-    openModal: (modalKey: string) => void; // Modalni ochish
-    closeModal: (modalKey: string) => void; // Modalni yopish
+    openModals: Record<string, boolean>;
+    openModal: (modalKey: string) => void;
+    closeModal: (modalKey: string) => void;
 };
 
 export const useModalStore = create<ModalState>((set) => ({

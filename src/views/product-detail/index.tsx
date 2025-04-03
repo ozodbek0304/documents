@@ -6,9 +6,9 @@ import { Document } from "@/types/products";
 export default function ProductDetail({ product }: { product: Document }) {
 
   return (
-    <section className="pt-3 sm:pt-5 container mx-auto">
+    <section className="pt-3 sm:pt-5 container mx-auto lg:px-0 px-3">
       <h1
-        className="text-2xl font-medium"
+        className="lg:text-2xl font-medium leading-6"
         aria-label="Depressiya va suitsidual xavfi mavjud mijozlarga maslahat mavzusida kurs
         ishi"
       >

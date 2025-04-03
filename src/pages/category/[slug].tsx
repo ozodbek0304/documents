@@ -8,6 +8,10 @@ import ParamInput from "@/components/param/input";
 import { Document } from "@/types/products";
 import { CategoriesType } from "@/views/home/hero";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { LayoutList, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCatalogStore } from "@/store/catalogStorge";
 
 interface CategoryPageProps {
   categories: CategoriesType[];
@@ -51,9 +55,8 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
   return {
     props: {
-      document: document || { next_cursor: 0, products: [] },
+      document,
       categories,
-      currentSlug: slug,
     },
     revalidate: 10,
   };
@@ -64,10 +67,12 @@ const CategoryPage = ({
   categories,
   document,
 }: CategoryPageProps) => {
+  const { open, toggleOpen } = useCatalogStore();
+
   return (
     <Layout>
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-8 sm:px-0 px-3">
-        <div className="col-span-4">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 lg:py-8 py-4 lg:px-0 px-3">
+        <div className="relative col-span-4 lg:flex-row flex justify-between items-center gap-3">
           <ParamInput
             redirectPath={`/category/${currentSlug}`}
             fullWidth
@@ -75,6 +80,31 @@ const CategoryPage = ({
             placeholder="Qidirish..."
             className="w-full rounded-full focus-visible:ring-1  px-6"
           />
+          <div className="block lg:hidden">
+            <Button
+              onClick={toggleOpen}
+              className="sm:h-12 rounded-full bg-gradient-to-r from-blue-600
+       to-indigo-600"
+            >
+              {open ? <X /> : <LayoutList />}
+            </Button>
+            <AnimatePresence>
+              {open && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute top-[100%] left-0 mt-1 bg-white p-2 shadow-xl rounded-sm overflow-hidden z-50 w-full"
+                >
+                  <CategorySidebar
+                    categories={categories}
+                    currentSlug={currentSlug}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
         <div className="col-span-1 hidden lg:block">
           <CategorySidebar categories={categories} currentSlug={currentSlug} />
