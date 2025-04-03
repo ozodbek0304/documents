@@ -10,9 +10,13 @@ import { toast } from "sonner";
 
 export default function OAuthBox() {
   const [state, setSetate] = useState<string>("");
-  const { mutate, isPending } = usePost(LOGIN_EMAIL, {
-    onSuccess: () => {
-      toast.success("Successfully logged in");
+  const { mutate, isPending } = usePost({
+    onSuccess: (data) => {
+      if (data?.access_token) {
+        localStorage.setItem("token", data?.access_token);
+      }
+      toast.success("Muavffaqiyatli kirdingiz!");
+      window.location.reload();
     },
   });
   const { data: session } = useSession();

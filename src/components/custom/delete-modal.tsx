@@ -9,6 +9,7 @@ import {
 } from "../ui/dialog";
 import Modal from "./modal";
 import { useDelete } from "@/hooks/useDelete";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Props = {
   modalKey?: string;
@@ -26,13 +27,21 @@ export default function DeleteModal({
   name,
 }: Props) {
   const { closeModal } = useModal(modalKey);
-  const { mutate, isPending } = useDelete(queryKey, {
+  const queryClient = useQueryClient();
+  const resolvedQueryKey = queryKey
+    ? Array.isArray(queryKey)
+      ? queryKey
+      : [queryKey]
+    : [path];
+  const { mutate, isPending } = useDelete({
     onSuccess: () => {
       toast.success("Muvaffaqiyatli o'chirildi");
       closeModal();
+      queryClient.removeQueries({
+        queryKey: resolvedQueryKey,
+      });
     },
   });
-
   const handleDelete = () => {
     mutate(path + `${id}/`);
   };

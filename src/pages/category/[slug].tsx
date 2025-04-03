@@ -51,8 +51,9 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
   return {
     props: {
-      document,
+      document: document || { next_cursor: 0, products: [] },
       categories,
+      currentSlug: slug,
     },
     revalidate: 10,
   };

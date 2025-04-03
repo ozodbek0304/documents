@@ -14,10 +14,12 @@ type ConfimFields = {
 export default function ConfimForm() {
   const form = useForm<ConfimFields>();
   const { closeModal } = useModal("login-modal");
-  const { mutate, isPending } = usePost(LOGIN_TELEGRAM, {
-    onSuccess: () => {
-      toast.success("Successfully logged in");
+  const { mutate, isPending } = usePost({
+    onSuccess: (data) => {
+      localStorage.setItem("token", data?.access_token);
+      toast.success("Muavffaqiyatli kirdingiz!");
       closeModal();
+      window.location.reload();
     },
   });
 
