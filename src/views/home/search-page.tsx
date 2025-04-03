@@ -4,9 +4,9 @@ import ParamInput from "@/components/param/input";
 import { useRouter } from "next/router";
 import { useGet } from "@/hooks/useGet";
 import { PRODUCTS_SEARCH } from "@/lib/api-endpoints";
-import { Document } from "@/components/shared/product-list";
 import Link from "next/link";
 import Image from "next/image";
+import { Document } from "@/types/products";
 
 const fileType: { [key: string]: string } = {
   pdf: "/format-icon/pdf.webp",

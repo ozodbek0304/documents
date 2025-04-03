@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BookOpen, Download, HardDrive } from "lucide-react";
-import { Document } from "../product-list";
 import { Eye } from "lucide-react";
 import { fileColors } from "@/views/home/hero";
 import { cn } from "@/lib/utils";
+import { Document } from "@/types/products";
 
 const bgGradients: { [key: string]: string } = {
   doc: "from-blue-50 to-blue-100 border-blue-400",

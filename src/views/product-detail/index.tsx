@@ -1,7 +1,7 @@
 import React from "react";
 import ProdcutImageSlider from "@/components/shared/product-detail/prodcut-image-slider";
 import ProductAction from "@/components/shared/product-detail/product-action";
-import { Document } from "@/components/shared/product-list";
+import { Document } from "@/types/products";
 
 export default function ProductDetail({ product }: { product: Document }) {
 

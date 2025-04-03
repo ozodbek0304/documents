@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Document } from "@/components/shared/product-list";
+import { Document } from "@/types/products";
 
 export function DocumentPurchase({ product }: { product: Document }) {
   const [paymentMethod, setPaymentMethod] = useState("click");

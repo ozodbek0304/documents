@@ -1,34 +1,11 @@
 import React, { HTMLAttributes } from "react";
 import ProductCard from "../product-card";
+import { Document } from "@/types/products";
 
 type Props = {
   documents: Document[];
 } & HTMLAttributes<HTMLDivElement>;
 
-export interface Document {
-  id: string;
-  name: string;
-  desc: string;
-  slug: string;
-  price: number;
-  category_id: string;
-  category_name: string;
-  tags: string[];
-  category: {
-    id: string;
-    name: string;
-    slug: string;
-  };
-  poster: string;
-  ext: string;
-  view_count: number;
-  sold_count: number;
-  size: number;
-  pages: number;
-  images: {
-   [key:string]: string;
-  }[];
-}
 
 export default function ProductList({ documents }: Props) {
   return (

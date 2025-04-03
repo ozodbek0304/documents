@@ -10,12 +10,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { Document } from "../product-list";
 import { Separator } from "@/components/ui/separator";
 import { fileColors } from "@/views/home/hero";
 import { useModal } from "@/hooks/use-modal";
 import Modal from "@/components/custom/modal";
 import { DocumentPurchase } from "@/views/product-detail/payment";
+import { Document } from "@/types/products";
 
 export default function ProductAction({ product }: { product: Document }) {
   const { openModal } = useModal();
