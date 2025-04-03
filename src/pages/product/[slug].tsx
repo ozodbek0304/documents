@@ -52,7 +52,7 @@ export default function ProductPage({ product, error }: Props) {
       </Head>
       <ProductDetail product={product} />
 
-      {product?.simmilar?.length > 0 ? (
+      {product?.similar?.length > 0 ? (
         <div className="container mx-auto mt-12 relative">
           <h1 className="text-2xl font-bold my-3">O'xshash mahsulotlar</h1>
           <Carousel
@@ -62,7 +62,7 @@ export default function ProductPage({ product, error }: Props) {
             className="w-full"
           >
             <CarouselContent className="p-1">
-              {product?.simmilar?.map((item, index) => (
+              {product?.similar?.map((item, index) => (
                 <CarouselItem
                   key={index}
                   className="md:basis-1/3 p-0 ml-3  rounded-xl shadow-sm border lg:basis-1/5"
