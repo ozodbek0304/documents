@@ -24,7 +24,7 @@ export default function ProductCard({ product }: { product: Document }) {
       href={`/product/${product.slug}`}
       key={product.id}
       className={cn(
-        `group relative overflow-hidden sm:rounded-xl rounded-lg bg-white shadow-md transition-all duration-500 hover:-translate-y-2 
+        `group relative overflow-hidden sm:rounded-xl rounded-lg bg-gray-50 shadow-md transition-all duration-500 hover:-translate-y-2 
         hover:shadow-xl
       border-t-3`,
         bgGradients[product.ext]
