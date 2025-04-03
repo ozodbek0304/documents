@@ -54,7 +54,9 @@ export default function ProductPage({ product, error }: Props) {
 
       {product?.similar?.length > 0 ? (
         <div className="container mx-auto lg:mt-12 mt-8 relative lg:px-0 px-3">
-          <h1 className="lg:text-2xl font-bold my-3">O'xshash mahsulotlar</h1>
+          <h1 className="lg:text-2xl text-xl font-bold my-3">
+            O'xshash mahsulotlar
+          </h1>
           <Carousel
             opts={{
               align: "center",
@@ -71,8 +73,10 @@ export default function ProductPage({ product, error }: Props) {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -top-7 left-[94%] cursor-pointer " />
-            <CarouselNext className="absolute -top-7 right-0  cursor-pointer " />
+            <div className="flex items-center  absolute -top-7 right-12">
+              <CarouselPrevious className=" cursor-pointer " />
+              <CarouselNext className=" cursor-pointer " />
+            </div>
           </Carousel>
         </div>
       ) : null}
