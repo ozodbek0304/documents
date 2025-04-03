@@ -55,43 +55,52 @@ export default function DocumentSearch() {
             <Link
               href={`/product/${doc.slug}`}
               key={doc.id}
-              className="flex items-center p-3 border cursor-pointer rounded-lg hover:bg-muted/50"
+              className="flex sm:items-center flex-col sm:flex-row sm:gap-3 gap-2 p-3 border cursor-pointer rounded-lg hover:bg-muted/50"
             >
-              <div className=" rounded-md mr-4 flex flex-col">
-                <Image
-                  src={fileType[doc.ext]}
-                  width={40}
-                  height={40}
-                  alt={doc.name}
-                  priority
-                />
-              </div>
-              <div className="flex-grow">
-                <h3 className="font-medium">{doc.name}</h3>
-                <div className="flex items-center gap-2 mt-1">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1.5">
-                      <BookOpen className={"h-4 w-4 text-gray-500"} />
-                      <span className="text-xs font-medium">
-                        {doc.pages || 0} sahifa
-                      </span>
+              <div className="flex items-center gap-3">
+                <div className=" rounded-md  flex flex-col">
+                  <Image
+                    src={fileType[doc.ext]}
+                    width={40}
+                    height={40}
+                    alt={doc.name}
+                    priority
+                  />
+                </div>
+                <div className="flex-grow">
+                  <h3 className="font-medium">{doc.name}</h3>
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1.5">
+                        <BookOpen className={"h-4 w-4 text-gray-500"} />
+                        <span className="text-xs font-medium">
+                          {doc.pages || 0} sahifa
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <HardDrive className={"h-4 w-4 text-gray-500"} />
+                        <span className="text-xs font-medium">
+                          {(doc.size / 1024 / 1024).toFixed(2)} MB
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <HardDrive className={"h-4 w-4 text-gray-500"} />
-                      <span className="text-xs font-medium">
-                        {(doc.size / 1024 / 1024).toFixed(2)} MB
+                    <div className={`sm:flex items-center hidden `}>
+                      <span className="text-md font-bold">
+                        {doc.price.toLocaleString()} so'm
                       </span>
+                      <span className="ml-1 text-sm">so'm</span>
                     </div>
-                  </div>
-                  <div className={`flex items-center `}>
-                    <span className="text-md font-bold">
-                      {doc.price.toLocaleString()} so'm
-                    </span>
-                    <span className="ml-1 text-sm">so'm</span>
                   </div>
                 </div>
               </div>
-              <div>
+
+              <div className="flex justify-between items-center gap-3">
+                <div className={`sm:hidden items-center flex `}>
+                  <span className="text-md font-bold">
+                    {doc.price.toLocaleString()} so'm
+                  </span>
+                  <span className="ml-1 text-sm">so'm</span>
+                </div>
                 <Button variant="ghost" size="icon">
                   <Share2 size={16} />
                 </Button>

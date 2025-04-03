@@ -39,7 +39,7 @@ export default function OAuthBox() {
     <Modal
       size="md"
       modalKey="login-modal"
-      className="bg-gradient-to-br from-slate-900 max-w-[200px] text-white border-none to-blue-900"
+      className="bg-gradient-to-br max-w-[340px] from-slate-900  text-white border-none to-blue-900"
     >
       {state === "telegram" ? (
         <ConfimForm />
