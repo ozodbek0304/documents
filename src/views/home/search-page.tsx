@@ -8,6 +8,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Document } from "@/types/products";
 import ParamPagination from "@/components/custom/pagination";
+import { Skeleton } from "@/components/ui/skeleton";
+import React from "react";
 
 const fileType: { [key: string]: string } = {
   pdf: "/format-icon/pdf.webp",
@@ -28,10 +30,13 @@ interface SearchPageProps {
 
 export default function DocumentSearch() {
   const { query } = useRouter();
-  const { data, isSuccess } = useGet<SearchPageProps>(PRODUCTS_SEARCH, {
-    params: { search: query?.search },
-    options: { enabled: Boolean(query?.search) },
-  });
+  const { data, isSuccess, isFetching, isLoading } = useGet<SearchPageProps>(
+    PRODUCTS_SEARCH,
+    {
+      params: { search: query?.search },
+      options: { enabled: Boolean(query?.search) },
+    }
+  );
 
   return (
     <div className="container mx-auto p-4">
@@ -57,64 +62,91 @@ export default function DocumentSearch() {
       )}
 
       <div className="space-y-3">
-        {isSuccess &&
-          data?.count > 0 &&
-          data?.results?.map((doc) => (
-            <Link
-              href={`/product/${doc.slug}`}
-              key={doc.id}
-              className="flex sm:items-center justify-between flex-col sm:flex-row sm:gap-3 gap-2 p-3 border cursor-pointer rounded-lg hover:bg-muted/50"
-            >
-              <div className="flex items-center gap-3">
-                <div className=" rounded-md  flex flex-col">
-                  <Image
-                    src={fileType[doc.ext]}
-                    width={40}
-                    height={40}
-                    alt={doc.name}
-                    priority
-                  />
-                </div>
-                <div className="flex-grow">
-                  <h3 className="font-medium">{doc.name}</h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1.5">
-                        <BookOpen className={"h-4 w-4 text-gray-500"} />
-                        <span className="text-xs font-medium">
-                          {doc.pages || 0} sahifa
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <HardDrive className={"h-4 w-4 text-gray-500"} />
-                        <span className="text-xs font-medium">
-                          {(doc.size / 1024 / 1024).toFixed(2)} MB
-                        </span>
+        {isSuccess && data.count > 0 ? (
+          <React.Fragment>
+            {isFetching || isLoading
+              ? Array.from({ length: 10 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="border rounded-xl p-3 flex sm:items-center justify-between flex-col sm:flex-row sm:gap-3 gap-2"
+                  >
+                    <div className="flex sm:items-center justify-between gap-2 w-full">
+                      <Skeleton className=" h-[52px] w-14" />
+                      <div className="w-full flex flex-col gap-3">
+                        <Skeleton className="sm:w-1/3 w-[85%] h-4" />
+                        <div className="flex items-center gap-4">
+                          <Skeleton className=" w-[100px] h-4" />
+                          <Skeleton className=" w-[90px] h-4" />
+                          <Skeleton className="hidden sm:block sm:w-[150px] h-4" />
+                        </div>
                       </div>
                     </div>
-                    <div className={`sm:flex items-center hidden `}>
-                      <span className="text-md font-bold">
-                        {doc.price.toLocaleString()} so'm
-                      </span>
-                      <span className="ml-1 text-sm">so'm</span>
+
+                    <div className="flex items-center justify-between gap-4  sm:hidden">
+                      <Skeleton className=" w-[100px] h-4" />
+                      <Skeleton className=" w-[90px] h-4" />
                     </div>
                   </div>
-                </div>
-              </div>
+                ))
+              : data?.count > 0 &&
+                data?.results?.map((doc) => (
+                  <Link
+                    href={`/product/${doc.slug}`}
+                    key={doc.id}
+                    className="flex sm:items-center justify-between flex-col sm:flex-row sm:gap-3 gap-2 p-3 border cursor-pointer rounded-lg hover:bg-muted/50"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className=" rounded-md  flex flex-col">
+                        <Image
+                          src={fileType[doc.ext]}
+                          width={40}
+                          height={40}
+                          alt={doc.name}
+                          priority
+                        />
+                      </div>
+                      <div className="flex-grow">
+                        <h3 className="font-medium">{doc.name}</h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-1.5">
+                              <BookOpen className={"h-4 w-4 text-gray-500"} />
+                              <span className="text-xs font-medium">
+                                {doc.pages || 0} sahifa
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <HardDrive className={"h-4 w-4 text-gray-500"} />
+                              <span className="text-xs font-medium">
+                                {(doc.size / 1024 / 1024).toFixed(2)} MB
+                              </span>
+                            </div>
+                          </div>
+                          <div className={`sm:flex items-center hidden `}>
+                            <span className="text-md font-bold">
+                              {doc.price.toLocaleString()} so'm
+                            </span>
+                            <span className="ml-1 text-sm">so'm</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-              <div className="flex justify-between items-center gap-3">
-                <div className={`sm:hidden items-center flex `}>
-                  <span className="text-md font-bold">
-                    {doc.price.toLocaleString()} so'm
-                  </span>
-                  <span className="ml-1 text-sm">so'm</span>
-                </div>
-                <Button variant="ghost" size="icon">
-                  <Share2 size={16} />
-                </Button>
-              </div>
-            </Link>
-          ))}
+                    <div className="flex justify-between items-center gap-3">
+                      <div className={`sm:hidden items-center flex `}>
+                        <span className="text-md font-bold">
+                          {doc.price.toLocaleString()} so'm
+                        </span>
+                        <span className="ml-1 text-sm">so'm</span>
+                      </div>
+                      <Button variant="ghost" size="icon">
+                        <Share2 size={16} />
+                      </Button>
+                    </div>
+                  </Link>
+                ))}
+          </React.Fragment>
+        ) : null}
 
         {isSuccess && data?.pages > 1 ? (
           <div className="my-5 flex justify-center col-span-4">

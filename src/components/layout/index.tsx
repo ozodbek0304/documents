@@ -17,7 +17,8 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const { query, asPath } = useRouter();
+  const { pathname, query } = useRouter();
+
 
   return (
     <div className="flex flex-col min-h-screen pt-[52px]">
@@ -29,7 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Header />
-      {(asPath !== "/") && (
+      {pathname !== "/" && pathname !== "/search" && (
         <div className="container mx-auto sm:p-0 px-3 sm:mt-5 mt-4">
           <Breadcrumb>
             <BreadcrumbList className="flex items-center flex-nowrap ">
