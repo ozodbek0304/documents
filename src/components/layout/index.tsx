@@ -29,7 +29,7 @@ const Layout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Header />
-      {asPath !== "/" && (
+      {(asPath !== "/") && (
         <div className="container mx-auto sm:p-0 px-3 sm:mt-5 mt-4">
           <Breadcrumb>
             <BreadcrumbList className="flex items-center flex-nowrap ">

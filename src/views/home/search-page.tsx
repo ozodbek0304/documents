@@ -7,6 +7,7 @@ import { PRODUCTS_SEARCH } from "@/lib/api-endpoints";
 import Link from "next/link";
 import Image from "next/image";
 import { Document } from "@/types/products";
+import ParamPagination from "@/components/custom/pagination";
 
 const fileType: { [key: string]: string } = {
   pdf: "/format-icon/pdf.webp",
@@ -18,9 +19,16 @@ const fileType: { [key: string]: string } = {
   pptx: "/format-icon/pptx.png",
 };
 
+interface SearchPageProps {
+  count: number;
+  page: number;
+  pages: number;
+  results: Document[];
+}
+
 export default function DocumentSearch() {
   const { query } = useRouter();
-  const { data: document, isSuccess } = useGet<Document[]>(PRODUCTS_SEARCH, {
+  const { data, isSuccess } = useGet<SearchPageProps>(PRODUCTS_SEARCH, {
     params: { search: query?.search },
     options: { enabled: Boolean(query?.search) },
   });
@@ -44,14 +52,14 @@ export default function DocumentSearch() {
       {/* Results count */}
       {isSuccess && (
         <p className="text-sm text-muted-foreground mb-4">
-          Topildi {document.length} fayl
+          Topildi {data?.count || 0} fayl
         </p>
       )}
 
       <div className="space-y-3">
         {isSuccess &&
-          document?.length > 0 &&
-          document.map((doc) => (
+          data?.count > 0 &&
+          data?.results?.map((doc) => (
             <Link
               href={`/product/${doc.slug}`}
               key={doc.id}
@@ -107,6 +115,12 @@ export default function DocumentSearch() {
               </div>
             </Link>
           ))}
+
+        {isSuccess && data?.pages > 1 ? (
+          <div className="my-5 flex justify-center col-span-4">
+            <ParamPagination totalPages={data?.pages} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

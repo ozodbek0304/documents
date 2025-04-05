@@ -12,31 +12,29 @@ import { Button } from "@/components/ui/button";
 import { LayoutList, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCatalogStore } from "@/store/catalogStorge";
+import ParamPagination from "@/components/custom/pagination";
 
 interface CategoryPageProps {
   categories: CategoriesType[];
   document: {
-    next_cursor: number;
-    products: Document[];
+    count: number;
+    page: number;
+    pages: number;
+    results: Document[];
   };
   currentSlug: string;
 }
 
-export async function getStaticPaths() {
-  const categories = await getRequest(CATEGORIES);
-
-  const paths = categories.map((category: { slug: string }) => ({
-    params: { slug: category.slug },
-  }));
-
-  return {
-    paths,
-    fallback: "blocking",
-  };
-}
-
-export async function getStaticProps({ params }: { params: { slug: string } }) {
+export async function getServerSideProps({
+  params,
+  query = {},
+}: {
+  params: { slug: string };
+  query: any;
+}) {
   const { slug } = params;
+  const { size = 20, page = 1 } = query;
+
   let categories = [];
   let document = null;
 
@@ -47,18 +45,20 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     categories = [];
   }
   try {
-    document = await getRequest(`${PRODUCTS_HOME}/${slug}`);
+    document = await getRequest(
+      `${PRODUCTS_HOME}/${slug}?size=${size}&page=${page}`
+    );
   } catch (error: any) {
     toast.error(error);
-    categories = [];
+    document = { count: 0, page: 1, pages: 0, results: [] };
   }
 
   return {
     props: {
       document,
       categories,
+      currentSlug: slug,
     },
-    revalidate: 10,
   };
 }
 
@@ -110,9 +110,14 @@ const CategoryPage = ({
           <CategorySidebar categories={categories} currentSlug={currentSlug} />
         </div>
         <div className="lg:col-span-3 col-span-4 items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 py-2 gap-3">
-          {document.products.map((item, index) => (
+          {document?.results?.map((item, index) => (
             <ProductCard key={index} product={item} />
           ))}
+          {document?.pages > 1 ? (
+            <div className="my-5 flex justify-center col-span-4">
+              <ParamPagination totalPages={document.pages} />
+            </div>
+          ) : null}
         </div>
       </div>
     </Layout>
