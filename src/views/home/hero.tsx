@@ -11,12 +11,12 @@ export type CategoriesType = {
 };
 
 export const categoryColor: Record<number, string> = {
-  0: "from-blue-500 to-indigo-600",
-  1: "from-emerald-500 to-teal-600",
+  0: "from-red-500 to-yellow-600",
+  1: "from-green-500 to-lime-600",
   2: "from-rose-500 to-pink-600",
-  3: "from-amber-500 to-yellow-600",
-  4: "from-purple-500 to-violet-600",
-  5: "from-cyan-500 to-sky-600",
+  3: "from-purple-500 to-violet-600",
+  4: "from-red-500 to-orange-600",
+  5: "from-emerald-500 to-teal-600",
 };
 
 export const fileColors: { [key: string]: string } = {
