@@ -7,6 +7,7 @@ import {
   Eye,
   File,
   HardDrive,
+  Share2,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -17,15 +18,31 @@ import Modal from "@/components/custom/modal";
 import { DocumentPurchase } from "@/views/product-detail/payment";
 import { Document } from "@/types/products";
 
+export const handleShare = (slug: string) => {
+  const url = encodeURIComponent(`https://hujjat24.uz/product/${slug}`);
+  const telegramUrl = `https://t.me/share/url?url=${url}`;
+  window.open(telegramUrl, "_blank");
+};
+
 export default function ProductAction({ product }: { product: Document }) {
   const { openModal } = useModal();
 
   return (
     <div className="w-full space-y-3">
       <div className="bg-white rounded-xl p-5 shadow-sm border ">
-        <h3 className="font-bold medium filter text-lg mb-4">
-          Hujjat ma'lumotlari
-        </h3>
+        <div className="w-full flex justify-between items-center mb-4">
+          <h3 className="font-bold medium filter text-lg ">
+            Hujjat ma'lumotlari
+          </h3>
+          <Button
+            onClick={() => handleShare(product.slug)}
+            variant="ghost"
+            size="icon"
+            className="hover:text-blue-500 cursor-pointer"
+          >
+            <Share2 size={20} />
+          </Button>
+        </div>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">

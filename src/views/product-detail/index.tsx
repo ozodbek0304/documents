@@ -5,6 +5,8 @@ import { Document } from "@/types/products";
 
 export default function ProductDetail({ product }: { product: Document }) {
 
+   
+
   return (
     <section className="pt-3 sm:pt-5 container mx-auto lg:px-0 px-3">
       <h1

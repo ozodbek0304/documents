@@ -10,6 +10,7 @@ import { Document } from "@/types/products";
 import ParamPagination from "@/components/custom/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
+import { handleShare } from "@/components/shared/product-detail/product-action";
 
 const fileType: { [key: string]: string } = {
   pdf: "/format-icon/pdf.webp",
@@ -33,18 +34,14 @@ export default function DocumentSearch() {
   const { data, isSuccess, isFetching, isLoading } = useGet<SearchPageProps>(
     PRODUCTS_SEARCH,
     {
-      params: { search: query?.search },
-      options: { enabled: Boolean(query?.search) },
+      params: query,
+      options: { enabled: Boolean(query) },
     }
   );
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 mt-2 text-center text-blue-600">
-        Document Bazar
-      </h1>
-
-      <div className="mb-6">
+      <div className="my-6">
         <ParamInput
           redirectPath="/search"
           fullWidth
@@ -55,10 +52,23 @@ export default function DocumentSearch() {
       </div>
 
       {/* Results count */}
-      {isSuccess && (
+      {isSuccess && data.count > 0 ? (
         <p className="text-sm text-muted-foreground mb-4">
           Topildi {data?.count || 0} fayl
         </p>
+      ) : (
+        <div className="w-full flex justify-center">
+          {query?.search ? (
+            <p className="text-sm text-muted-foreground mb-4">
+              <i className="font-bold"> " {query?.search} "</i> bo'yicha
+              ma'lumot topilmadi
+            </p>
+          ) : (
+            <p className="text-sm text-muted-foreground mb-4">
+              Ma'lumot topilmadi
+            </p>
+          )}
+        </div>
       )}
 
       <div className="space-y-3">
@@ -139,8 +149,13 @@ export default function DocumentSearch() {
                         </span>
                         <span className="ml-1 text-sm">so'm</span>
                       </div>
-                      <Button variant="ghost" size="icon">
-                        <Share2 size={16} />
+                      <Button
+                        onClick={() => handleShare(doc.slug)}
+                        className="hover:text-blue-500 cursor-pointer"
+                        variant="ghost"
+                        size="icon"
+                      >
+                        <Share2 size={20} />
                       </Button>
                     </div>
                   </Link>
