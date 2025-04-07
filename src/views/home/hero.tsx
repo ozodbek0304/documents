@@ -117,9 +117,9 @@ export default function HeroSection({
 
         {/* Categories */}
         <div className="mx-auto max-w-6xl">
-          <h2 className="sm:mb-6 mb-4 text-center sm:text-2xl text-xl font-bold">
+          <h1 className="sm:mb-6 mb-4 text-center sm:text-2xl text-xl font-bold">
             Kategoriyalar
-          </h2>
+          </h1>
           <div className="grid grid-cols-2 sm:gap-6  gap-3 md:grid-cols-3 lg:grid-cols-6">
             {categories?.map((category, index: number) => (
               <Link

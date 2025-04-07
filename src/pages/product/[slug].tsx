@@ -127,7 +127,7 @@ export default function ProductPage({ product, error }: Props) {
               {product?.similar?.map((item, index) => (
                 <CarouselItem
                   key={index}
-                  className="md:basis-1/3 p-0 ml-3  rounded-xl shadow-sm border lg:basis-1/5"
+                  className="md:basis-1/3 p-0 ml-3  basis-1/2 rounded-xl shadow-sm border lg:basis-1/5"
                 >
                   <ProductCard key={index} product={item} />
                 </CarouselItem>

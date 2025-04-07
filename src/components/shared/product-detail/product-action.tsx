@@ -32,9 +32,9 @@ export default function ProductAction({ product }: { product: Document }) {
     <div className="w-full space-y-3">
       <div className="bg-white rounded-xl p-5 shadow-sm border ">
         <div className="w-full flex justify-between items-center mb-4">
-          <h3 className="font-bold medium filter text-lg ">
+          <h1 className="font-bold medium filter text-lg ">
             Hujjat ma'lumotlari
-          </h3>
+          </h1>
           <Button
             onClick={() => handleShare(product.slug)}
             variant="ghost"

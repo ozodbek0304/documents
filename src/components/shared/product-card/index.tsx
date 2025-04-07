@@ -54,9 +54,9 @@ export default function ProductCard({ product }: { product: Document }) {
 
       <div className="sm:p-3 p-2 bg-gray-50   rounded-b-xl">
         {/* Title */}
-        <h3 className="mb-3 sm:text-sm text-[13px] font-semibold text-gray-800 line-clamp-2">
+        <h1 className="mb-3 sm:text-sm text-[13px] font-semibold text-gray-800 line-clamp-2">
           {product.name}
-        </h3>
+        </h1>
 
         {/* File info */}
         <div className="mb-3 flex items-center sm:gap-3 gap-1">

@@ -85,7 +85,7 @@ export default function Home({ data, categories }: Props) {
                   className="flex items-center gap-3 sm:py-2 py-1 border-b border-border group hover:border-blue-500 transition-all duration-300"
                 >
                   <span className="sm:text-3xl text-2xl">{item.icon}</span>
-                  <h2 className="sm:text-2xl text-xl font-bold">{item.name}</h2>
+                  <h1 className="sm:text-2xl text-xl font-bold">{item.name}</h1>
                   <ArrowRight className="sm:h-6 sm:w-6 w-4 h-4 ml-auto text-muted-foreground opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary transition-all duration-300" />
                 </Link>
                 <ProductList documents={item.products} />

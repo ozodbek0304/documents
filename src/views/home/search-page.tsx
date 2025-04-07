@@ -116,7 +116,7 @@ export default function DocumentSearch() {
                         />
                       </div>
                       <div className="flex-grow">
-                        <h3 className="font-medium">{doc.name}</h3>
+                        <h1 className="font-medium">{doc.name}</h1>
                         <div className="flex items-center gap-2 mt-1">
                           <div className="flex items-center gap-3">
                             <div className="flex items-center gap-1.5">
