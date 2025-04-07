@@ -58,7 +58,7 @@ export default function ProductPage({ product, error }: Props) {
           name="description"
           content={
             product.desc?.slice(0, 160) ||
-            "Yuqori sifatli mahsulotlar Hujjat24da. Sifat, ishonch va qulaylik."
+            "Yuqori sifatli mahsulotlar Hujjat24.uz. Sifat, ishonch va qulaylik."
           }
         />
         <meta
@@ -68,7 +68,7 @@ export default function ProductPage({ product, error }: Props) {
             `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar , diplom ishlar`
           }
         />
-        <meta name="author" content="Hujjat24" />
+        <meta name="author" content="Hujjat24.uz" />
 
         {/* Canonical URL */}
         <link
@@ -78,7 +78,7 @@ export default function ProductPage({ product, error }: Props) {
 
         {/* Open Graph (Facebook va boshqalar uchun) */}
         <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.name} | Hujjat24`} />
+        <meta property="og:title" content={`${product.name} | Hujjat24.uz`} />
         <meta
           property="og:description"
           content={
@@ -97,11 +97,11 @@ export default function ProductPage({ product, error }: Props) {
           property="og:url"
           content={`https://hujjat24.uz/product/${product.slug}`}
         />
-        <meta property="og:site_name" content="YourBrand" />
+        <meta property="og:site_name" content="Hujjat24.uz" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${product.name} | YourBrand`} />
+        <meta name="twitter:title" content={`${product.name} | Hujjat24.uz`} />
         <meta
           name="twitter:description"
           content={
