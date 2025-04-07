@@ -5,10 +5,10 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {/* Page Title */}
-        <title>Hujjat24</title>
+        <title>Hujjat24.uz - Yuqori sifatli mahsulotlar</title>
         <meta
           name="description"
-          content="Hujjat24.uz - Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
+          content=" Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
         />
         <meta
           name="keywords"
@@ -19,18 +19,18 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="Hujjat24.uz | Yuqori sifatli mahsulotlar"
+          content="Hujjat24.uz - Yuqori sifatli mahsulotlar"
         />
         <meta
           property="og:description"
-          content="Hujjat24.uz - Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
+          content="Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
         />
         <meta property="og:image" content="/logo.png" />
         <meta property="og:url" content="https://hujjat24.uz" />
         <meta property="og:site_name" content="hujjat24.uz" />
         <meta
           property="og:keywords"
-          content="Hujjat24.uz - Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
+          content="Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
         />
 
         {/* Twitter Meta Tags */}
@@ -38,17 +38,17 @@ export default function Document() {
         <meta property="twitter:type" content="website" />
         <meta
           property="twitter:title"
-          content="Hujjat24.uz | Yuqori sifatli mahsulotlar"
+          content="Hujjat24.uz - Yuqori sifatli mahsulotlar"
         />
         <meta
           property="twitter:description"
-          content="Hujjat24.uz - Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
+          content="Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
         />
         <meta property="twitter:url" content="https://hujjat24.uz" />
         <meta property="twitter:site_name" content="hujjat24.uz" />
         <meta
           property="twitter:keywords"
-          content="Hujjat24.uz - Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
+          content="Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
         />
       </Head>
 
