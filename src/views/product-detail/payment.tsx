@@ -44,7 +44,7 @@ export function DocumentPurchase({ product }: { product: Document }) {
               />
               <Label
                 htmlFor="click"
-                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                className="flex  sm:w-[242px] sm:h-[113px] h-20  items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-purple-500 [&:has([data-state=checked])]:border-purple-500"
               >
                 <Image
                   src="/payment/click.png"
@@ -52,8 +52,7 @@ export function DocumentPurchase({ product }: { product: Document }) {
                   width={240}
                   priority
                   height={240}
-                   className="w-[222px] h-[113px] object-contain"
-
+                  className="w-full h-full object-cover rounded-md "
                 />
               </Label>
             </div>
@@ -65,13 +64,14 @@ export function DocumentPurchase({ product }: { product: Document }) {
               />
               <Label
                 htmlFor="payme"
-                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                className="flex flex-col sm:w-[242px] sm:h-[113px] h-20 items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-purple-500 [&:has([data-state=checked])]:border-purple-500"
               >
                 <Image
                   src="/payment/payme.png"
                   alt="Payme"
                   width={240}
                   height={240}
+                  className="w-full h-full object-cover rounded-md "
                   priority
                 />
               </Label>
@@ -96,10 +96,10 @@ export function DocumentPurchase({ product }: { product: Document }) {
 
         <div className="rounded-lg border p-4 bg-gray-50">
           <div className="flex justify-between ">
-            <span className="text-gray-600 font-medium text-lg">
+            <span className="text-gray-600 font-medium sm:text-lg">
               Mahsulot narxi
             </span>
-            <span className="font-medium text-xl">
+            <span className="font-medium sm:text-xl">
               {product.price.toLocaleString()} so'm
             </span>
           </div>

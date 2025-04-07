@@ -16,9 +16,11 @@ export default function Footer() {
             />
           </Link>
           <div className="flex items-center gap-1">
-        <a href="tel:+998881023042">
-        <span className="text-primary text-md hover:text-purple-600">+998 88 102 30 42</span>
-        </a>
+            <a href="tel:+998971640102">
+              <span className="text-primary text-md hover:text-purple-600">
+                +998 97 164 01 02
+              </span>
+            </a>
           </div>
           <p>&#169; 2025 Hujjat24 Barcha huquqlar himoyalangan</p>
         </div>

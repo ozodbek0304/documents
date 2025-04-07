@@ -24,6 +24,7 @@ export const handleShare = (slug: string) => {
   window.open(telegramUrl, "_blank");
 };
 
+
 export default function ProductAction({ product }: { product: Document }) {
   const { openModal } = useModal();
 
