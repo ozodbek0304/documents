@@ -41,7 +41,7 @@ export async function getServerSideProps({
   try {
     categories = await getRequest(CATEGORIES);
   } catch (error: any) {
-    toast.error(error);
+    console.log(error);
     categories = [];
   }
   try {
@@ -49,7 +49,7 @@ export async function getServerSideProps({
       `${PRODUCTS_HOME}/${slug}?size=${size}&page=${page}`
     );
   } catch (error: any) {
-    toast.error(error);
+    console.log(error);
     document = { count: 0, page: 1, pages: 0, results: [] };
   }
 

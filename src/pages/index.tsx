@@ -33,14 +33,14 @@ export async function getStaticProps() {
   try {
     data = await getRequest(PRODUCTS_HOME);
   } catch (error: any) {
-    toast.error(error);
+    console.log(error);
     data = [];
   }
 
   try {
     categories = await getRequest(CATEGORIES_TOP);
   } catch (error: any) {
-    toast.error(error);
+    console.log(error);
     categories = [];
   }
 
