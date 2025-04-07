@@ -2,7 +2,7 @@
 const nextConfig = {
   images: {
     domains: [
-      "d2gaf67z4e11li.cloudfront.net",
+      "api.hujjat.uz",
       "d280q91s0zg1ey.cloudfront.net",
     ],
   },
