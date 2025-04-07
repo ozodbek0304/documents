@@ -10,7 +10,6 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { toast } from "sonner";
 
 type DocumentHome = {
   products: Document[];

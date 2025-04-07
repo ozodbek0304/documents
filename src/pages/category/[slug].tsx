@@ -7,7 +7,6 @@ import ProductCard from "@/components/shared/product-card";
 import ParamInput from "@/components/param/input";
 import { Document } from "@/types/products";
 import { CategoriesType } from "@/views/home/hero";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { LayoutList, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
