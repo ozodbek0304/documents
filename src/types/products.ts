@@ -20,7 +20,5 @@ export interface Document {
     size: number;
     pages: number;
     similar: Document[];
-    images: {
-      [key: string]: string;
-    }[];
+    images:string[];
   }

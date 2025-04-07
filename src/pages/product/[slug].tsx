@@ -45,81 +45,71 @@ export default function ProductPage({ product, error }: Props) {
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
 
+   
   return (
     <Layout>
       <Head>
-        {/* Sahifa sarlavhasi */}
-        <title>{product.name} | Hujjat24</title>
-
-        {/* SEO uchun asosiy meta teglari */}
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Page Title */}
+        <title>{product.name}</title>
         <meta
           name="description"
-          content={
-            product.desc?.slice(0, 160) ||
-            "Yuqori sifatli mahsulotlar Hujjat24.uz. Sifat, ishonch va qulaylik."
-          }
+          content={product.desc?.slice(0, 160) || product.name}
         />
         <meta
           name="keywords"
           content={
-            product.tags?.join(", ") ||
-            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar , diplom ishlar`
+            product?.tags?.join(", ") ||
+            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar, diplom ishlar`
           }
         />
-        <meta name="author" content="Hujjat24.uz" />
-
-        {/* Canonical URL */}
-        <link
-          rel="canonical"
-          href={`https://hujjat24.uz/product/${product.slug}`}
-        />
-
-        {/* Open Graph (Facebook va boshqalar uchun) */}
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.name} | Hujjat24.uz`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={product.name} />
         <meta
           property="og:description"
-          content={
-            product.desc?.slice(0, 160) ||
-            "Yuqori sifatli mahsulotlarni bizda toping"
-          }
+          content={product.desc?.slice(0, 160) || product.name}
         />
         <meta
           property="og:image"
-          content={
-            product.images?.length > 0
-              ? product.images?.[0]?.image
-              : "/logo.png"
-          }
+          content={product?.images?.[0] || "/logo.png"}
         />
         <meta
           property="og:url"
           content={`https://hujjat24.uz/product/${product.slug}`}
         />
-        <meta property="og:site_name" content="Hujjat24.uz" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${product.name} | Hujjat24.uz`} />
+        <meta property="og:site_name" content="hujjat24.uz" />
         <meta
-          name="twitter:description"
+          property="og:keywords"
           content={
-            product.desc?.slice(0, 160) ||
-            "Yuqori sifatli mahsulotlar bilan tanishing"
-          }
-        />
-        <meta
-          name="twitter:image"
-          content={
-            product.images?.length > 0
-              ? product.images?.[0]?.image
-              : "/logo.png"
+            product?.tags?.join(", ") ||
+            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar, diplom ishlar`
           }
         />
 
+        {/* Twitter Metadata */}
+        <meta
+          property="twitter:image"
+          content={product?.images?.[0] || "/logo.png"}
+        />
+        <meta property="twitter:type" content="website" />
+        <meta property="twitter:title" content={product.name} />
+        <meta
+          property="twitter:description"
+          content={product.desc?.slice(0, 160) || product.name}
+        />
+        <meta
+          property="twitter:url"
+          content={`https://hujjat24.uz/product/${product.slug}`}
+        />
+        <meta property="twitter:site_name" content="hujjat24.uz" />
+        <meta
+          property="twitter:keywords"
+          content={
+            product?.tags?.join(", ") ||
+            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar, diplom ishlar`
+          }
+        />
       </Head>
+
       <ProductDetail product={product} />
 
       {product?.similar?.length > 0 ? (

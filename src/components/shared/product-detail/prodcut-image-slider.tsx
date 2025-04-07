@@ -1,11 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 
-export default function ProductImageSlider({
-  images,
-}: {
-  images: { [key: string]: string }[];
-}) {
+export default function ProductImageSlider({ images }: { images: string[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
