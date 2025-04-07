@@ -23,7 +23,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen pt-[52px]">
       <Head>
-        <title>My Nextjs Template</title>
+        <title>Hujjat24</title>
         <meta
           name="description"
           content="This site is a template for nextjs website"

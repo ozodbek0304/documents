@@ -8,8 +8,8 @@ export default function Header() {
       <div className="py-2 shadow-sm">
         <div className="container mx-auto lg:px-0 px-3">
           <div className="flex items-center justify-between gap-2">
-            <Link href={"/"}>
-              <Image src={"/logo.png"} width={120} height={120} alt="logo" />
+            <Link href={"/"} >
+              <Image className="h-9" src={"/logo.png"} width={120} height={120} alt="logo" />
             </Link>
             <UserMenu />
           </div>
