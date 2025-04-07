@@ -48,7 +48,79 @@ export default function ProductPage({ product, error }: Props) {
   return (
     <Layout>
       <Head>
-        <title>{product.name || "Product Detail Page"}</title>
+        {/* Sahifa sarlavhasi */}
+        <title>{product.name} | Hujjat24</title>
+
+        {/* SEO uchun asosiy meta teglari */}
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content={
+            product.desc?.slice(0, 160) ||
+            "Yuqori sifatli mahsulotlar Hujjat24da. Sifat, ishonch va qulaylik."
+          }
+        />
+        <meta
+          name="keywords"
+          content={
+            product.tags?.join(", ") ||
+            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar , diplom ishlar`
+          }
+        />
+        <meta name="author" content="Hujjat24" />
+
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href={`https://hujjat24.uz/product/${product.slug}`}
+        />
+
+        {/* Open Graph (Facebook va boshqalar uchun) */}
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content={`${product.name} | Hujjat24`} />
+        <meta
+          property="og:description"
+          content={
+            product.desc?.slice(0, 160) ||
+            "Yuqori sifatli mahsulotlarni bizda toping"
+          }
+        />
+        <meta
+          property="og:image"
+          content={
+            product.images?.[0]?.[Object.keys(product.images?.[0] || {})[0]] ||
+           "/logo.png"
+          }
+        />
+        <meta
+          property="og:url"
+          content={`https://hujjat24.uz/product/${product.slug}`}
+        />
+        <meta property="og:site_name" content="YourBrand" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${product.name} | YourBrand`} />
+        <meta
+          name="twitter:description"
+          content={
+            product.desc?.slice(0, 160) ||
+            "Yuqori sifatli mahsulotlar bilan tanishing"
+          }
+        />
+        <meta
+          name="twitter:image"
+          content={
+            product.images?.[0]?.[Object.keys(product.images?.[0] || {})[0]] ||
+            "/logo.png"
+          }
+        />
+
+        {/* Favicon */}
+        <link rel="icon" href="/logo.png" sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+        <meta name="theme-color" content="#ffffff" />
       </Head>
       <ProductDetail product={product} />
 
