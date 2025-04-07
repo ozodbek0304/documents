@@ -89,8 +89,9 @@ export default function ProductPage({ product, error }: Props) {
         <meta
           property="og:image"
           content={
-            product.images?.[0]?.[Object.keys(product.images?.[0] || {})[0]] ||
-           "/logo.png"
+            product.images?.length > 0
+              ? product.images?.[0]?.image
+              : "/logo.png"
           }
         />
         <meta
@@ -112,8 +113,9 @@ export default function ProductPage({ product, error }: Props) {
         <meta
           name="twitter:image"
           content={
-            product.images?.[0]?.[Object.keys(product.images?.[0] || {})[0]] ||
-            "/logo.png"
+            product.images?.length > 0
+              ? product.images?.[0]?.image
+              : "/logo.png"
           }
         />
 
