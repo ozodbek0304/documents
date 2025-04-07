@@ -119,10 +119,6 @@ export default function ProductPage({ product, error }: Props) {
           }
         />
 
-        {/* Favicon */}
-        <link rel="icon" href="/logo.png" sizes="32x32" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
-        <meta name="theme-color" content="#ffffff" />
       </Head>
       <ProductDetail product={product} />
 
