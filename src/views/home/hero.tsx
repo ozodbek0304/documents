@@ -148,8 +148,7 @@ export default function HeroSection({
         <div className="mx-auto mt-12 max-w-4xl">
           <div className="flex flex-wrap justify-center gap-3">
             {fileFormats.map((item) => (
-              <Link
-                href={`/format/${item.format}`}
+              <div
                 key={item.format}
                 className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white/10
                  sm:px-6 sm:py-3 px-4 py-1 font-medium backdrop-blur-md transition-all duration-300 hover:bg-white/20"
@@ -161,7 +160,7 @@ export default function HeroSection({
                 ></span>
                 <span>{item.icon}</span>
                 <span>{item.format}</span>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
