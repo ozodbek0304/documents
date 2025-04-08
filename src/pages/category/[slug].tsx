@@ -112,13 +112,13 @@ const CategoryPage = ({
           {document?.results?.map((item, index) => (
             <ProductCard key={index} product={item} />
           ))}
-          {document?.pages > 1 ? (
-            <div className="my-5 ">
-              <ParamPagination totalPages={document.pages} />
-            </div>
-          ) : null}
         </div>
       </div>
+      {document?.pages > 1 ? (
+        <div className="my-5 flex justify-center container mx-auto lg:px-0 px-3 ">
+          <ParamPagination totalPages={document.pages} />
+        </div>
+      ) : null}
     </Layout>
   );
 };
