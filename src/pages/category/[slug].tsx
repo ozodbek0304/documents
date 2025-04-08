@@ -70,7 +70,7 @@ const CategoryPage = ({
 
   return (
     <Layout>
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 lg:py-8 py-4 lg:px-0 px-3">
+      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-4 gap-6 lg:py-8 py-4 lg:px-0 px-3">
         <div className="relative col-span-4 lg:flex-row flex justify-between items-center gap-3">
           <ParamInput
             redirectPath={`/category/${currentSlug}`}
@@ -108,12 +108,12 @@ const CategoryPage = ({
         <div className="col-span-1 hidden lg:block">
           <CategorySidebar categories={categories} currentSlug={currentSlug} />
         </div>
-        <div className="lg:col-span-3 col-span-4 items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 py-2 gap-3">
+        <div className="lg:col-span-3  col-span-4 items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 py-2 gap-3">
           {document?.results?.map((item, index) => (
             <ProductCard key={index} product={item} />
           ))}
           {document?.pages > 1 ? (
-            <div className="my-5 flex justify-center col-span-4">
+            <div className="my-5 ">
               <ParamPagination totalPages={document.pages} />
             </div>
           ) : null}
