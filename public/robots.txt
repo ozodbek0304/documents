@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hujjat24.uz
+
+# Sitemaps
+Sitemap: https://hujjat24.uz/sitemap.xml

@@ -45,12 +45,11 @@ export default function ProductPage({ product, error }: Props) {
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
 
-   
   return (
     <Layout>
       <Head>
         {/* Page Title */}
-        <title>{product.name}</title>
+        <title>{`${product.name} | Hujjat24`}</title>
         <meta
           name="description"
           content={product.desc?.slice(0, 160) || product.name}
@@ -62,6 +61,11 @@ export default function ProductPage({ product, error }: Props) {
             `${product.name}, kurs ishlari, diplom ishlari, taqdimotlar, slaydlar, referatlar, mustaqil ishlar, dars ishlanmalari, metodik qo'llanmalar, ilmiy maqolalar, laboratoriya ishlari, testlar, dissertatsiyalar, statistika hisobotlari, tarjimalar, lug'atlar, shartnomalar, huquqiy hujjatlar`
           }
         />
+        <link
+          rel="canonical"
+          href={`https://hujjat24.uz/product/${product.slug}`}
+        />
+        <meta name="robots" content="index, follow" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={product.name} />
         <meta
@@ -107,6 +111,30 @@ export default function ProductPage({ product, error }: Props) {
             product?.tags?.join(", ") ||
             `${product.name}, kurs ishlari, diplom ishlari, taqdimotlar, slaydlar, referatlar, mustaqil ishlar, dars ishlanmalari, metodik qo'llanmalar, ilmiy maqolalar, laboratoriya ishlari, testlar, dissertatsiyalar, statistika hisobotlari, tarjimalar, lug'atlar, shartnomalar, huquqiy hujjatlar`
           }
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org/",
+              "@type": "Product",
+              name: product.name,
+              image: product.images?.[0] || "/logo.png",
+              description: product.desc || product.name,
+              brand: {
+                "@type": "Brand",
+                name: "Hujjat24",
+              },
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "UZS",
+                price: product.price,
+                availability: "https://schema.org/InStock",
+                url: `https://hujjat24.uz/product/${product.slug}`,
+              },
+            }),
+          }}
         />
       </Head>
 

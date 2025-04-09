@@ -6,6 +6,8 @@ const nextConfig = {
       "d280q91s0zg1ey.cloudfront.net",
     ],
   },
+  reactStrictMode: true,
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
