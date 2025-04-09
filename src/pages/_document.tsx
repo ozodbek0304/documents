@@ -8,11 +8,11 @@ export default function Document() {
         {/* Page Title */}
         <meta
           name="description"
-          content=" Yuqori sifatli mahsulotlar, kurs ishi, taqdimotlar va boshqa o'quv materiallarini toping."
+          content="Hujjat24 - Kurs ishlari, diplom ishlar, taqdimotlar, metodik qo'llanmalar, dissertatsiyalar, referatlar, testlar, laboratoriya ishlari va boshqa o'quv hujjatlarini toping va yuklab oling."
         />
         <meta
           name="keywords"
-          content="Hujjat24, o'quv materiallari, kurs ishi, slaydlar, taqdimotlar, diplom ishlar"
+          content="Hujjat24, kurs ishlari, diplom ishlari, taqdimotlar, slaydlar, referatlar, mustaqil ishlar, dars ishlanmalari, metodik qo'llanmalar, ilmiy maqolalar, laboratoriya ishlari, testlar, dissertatsiyalar, statistika hisobotlari, tarjimalar, lug'atlar, shartnomalar, huquqiy hujjatlar"
         />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/logo.png" />

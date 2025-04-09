@@ -7,6 +7,7 @@ import { Document } from "@/types/products";
 import Hero, { CategoriesType } from "@/views/home/hero";
 import { ArrowRight, LayoutList } from "lucide-react";
 import { signIn } from "next-auth/react";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -74,6 +75,9 @@ export default function Home({ data, categories }: Props) {
 
   return (
     <Layout>
+      <Head>
+        <title>{"Asosiy sahifa"}</title>
+      </Head>
       <Hero categories={categories} />
       <div className="container mx-auto pt-12 lg:px-0 px-3 space-y-12">
         {data?.length > 0 && (

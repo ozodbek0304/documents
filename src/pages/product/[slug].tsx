@@ -59,7 +59,7 @@ export default function ProductPage({ product, error }: Props) {
           name="keywords"
           content={
             product?.tags?.join(", ") ||
-            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar, diplom ishlar`
+            `${product.name}, kurs ishlari, diplom ishlari, taqdimotlar, slaydlar, referatlar, mustaqil ishlar, dars ishlanmalari, metodik qo'llanmalar, ilmiy maqolalar, laboratoriya ishlari, testlar, dissertatsiyalar, statistika hisobotlari, tarjimalar, lug'atlar, shartnomalar, huquqiy hujjatlar`
           }
         />
         <meta property="og:type" content="website" />
@@ -81,7 +81,7 @@ export default function ProductPage({ product, error }: Props) {
           property="og:keywords"
           content={
             product?.tags?.join(", ") ||
-            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar, diplom ishlar`
+            `${product.name}, kurs ishlari, diplom ishlari, taqdimotlar, slaydlar, referatlar, mustaqil ishlar, dars ishlanmalari, metodik qo'llanmalar, ilmiy maqolalar, laboratoriya ishlari, testlar, dissertatsiyalar, statistika hisobotlari, tarjimalar, lug'atlar, shartnomalar, huquqiy hujjatlar`
           }
         />
 
@@ -105,7 +105,7 @@ export default function ProductPage({ product, error }: Props) {
           property="twitter:keywords"
           content={
             product?.tags?.join(", ") ||
-            `${product.name}, kurs ishi, slaydlar, taqdimotlar, mustaqil ishlar, diplom ishlar`
+            `${product.name}, kurs ishlari, diplom ishlari, taqdimotlar, slaydlar, referatlar, mustaqil ishlar, dars ishlanmalari, metodik qo'llanmalar, ilmiy maqolalar, laboratoriya ishlari, testlar, dissertatsiyalar, statistika hisobotlari, tarjimalar, lug'atlar, shartnomalar, huquqiy hujjatlar`
           }
         />
       </Head>

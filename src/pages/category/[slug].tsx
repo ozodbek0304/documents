@@ -12,6 +12,7 @@ import { LayoutList, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCatalogStore } from "@/store/catalogStorge";
 import ParamPagination from "@/components/custom/pagination";
+import Head from "next/head";
 
 interface CategoryPageProps {
   categories: CategoriesType[];
@@ -70,6 +71,9 @@ const CategoryPage = ({
 
   return (
     <Layout>
+      <Head>
+        <title>{"Kategoriyalar"}</title>
+      </Head>
       <div className="container mx-auto  grid grid-cols-1 md:grid-cols-4 gap-6 lg:py-8 py-4 lg:px-0 px-3">
         <div className="relative col-span-4 lg:flex-row flex justify-between items-center gap-3">
           <ParamInput
