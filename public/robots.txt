@@ -2,6 +2,10 @@
 User-agent: *
 Allow: /
 
+# *
+User-agent: *
+Disallow: /dashboard
+
 # Host
 Host: https://hujjat24.uz
 

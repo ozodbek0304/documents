@@ -6,3 +6,4 @@ export const PRODUCTS_HOME = "common/products";
 export const PRODUCTS_DETAILS = "common/products/detail";
 export const PRODUCTS_SEARCH = "common/products/search";
 export const SIMILAR_PRODUCTS = "common/products/similar";
+export const GET_VIEW = "auth/set-cookie";
