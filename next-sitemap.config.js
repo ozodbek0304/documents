@@ -7,6 +7,9 @@ export default {
   changefreq: "weekly",
   priority: 0.7,
   robotsTxtOptions: {
-    policies: [{ userAgent: "*", allow: "/" }],
+    policies: [
+      { userAgent: "*", allow: "/" },
+      { userAgent: "*", disallow: "/dashboard" }
+    ],
   },
 };
