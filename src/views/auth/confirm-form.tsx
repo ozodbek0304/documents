@@ -44,11 +44,11 @@ export default function ConfimForm() {
       <h1 className="font-bold text-2xl">Kodni Kiriting</h1>
       <div className="text-center">
         <a
-          href="tg://resolve?domain=DocBazarBot"
+          href="tg://resolve?domain=hujjat24_bot"
           rel="noopener noreferrer"
           className="lowercase border-b cursor-pointer hover:text-blue-400"
         >
-          @DocBazarBot
+          @hujjat24_bot
         </a>{" "}
         telegram botiga kiring va <br /> 2 daqiqalik kodingizni oling.
       </div>
