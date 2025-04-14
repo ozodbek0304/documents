@@ -12,6 +12,8 @@ export default function OAuthBox() {
   const [state, setSetate] = useState<string>("");
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
+      console.log(data);
+
       if (data?.access_token) {
         localStorage.setItem("token", data?.access_token);
       }
@@ -30,7 +32,8 @@ export default function OAuthBox() {
 
     if (result?.error) {
       toast.error("Kirishda xatolik yuz berdi!");
-    } else if (session?.user?.email) {
+    }
+    if (session?.user?.email) {
       mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
     }
   };
