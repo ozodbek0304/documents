@@ -11,15 +11,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLocalStorage } from "@/hooks/useLocalStorge";
+import { signOut } from "next-auth/react";
 
 export default function UserMenu() {
   const { openModal } = useModal("login-modal");
   const token = useLocalStorage("token");
 
-  function functionLogOut() {
+  const functionLogOut = async () => {
     localStorage.clear();
+    await signOut({ redirect: true, callbackUrl: "/" });
     window.location.reload();
-  }
+  };
 
   return (
     <div className="flex gap-2">
