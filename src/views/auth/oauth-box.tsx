@@ -14,8 +14,6 @@ export default function OAuthBox() {
 
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
-      console.log(data);
-
       if (data?.access_token) {
         localStorage.setItem("token", data?.access_token);
       }
