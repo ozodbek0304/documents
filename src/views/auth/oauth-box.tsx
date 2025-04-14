@@ -47,6 +47,7 @@ export default function OAuthBox() {
       }
     } catch (err) {
       toast.error("Xatolik yuz berdi!");
+      console.error(err);
     }
   };
 
