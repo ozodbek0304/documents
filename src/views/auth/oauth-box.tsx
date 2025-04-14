@@ -1,16 +1,15 @@
 import Modal from "@/components/custom/modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import ConfimForm from "./confirm-form";
 import { usePost } from "@/hooks/usePost";
 import { LOGIN_EMAIL } from "@/lib/api-endpoints";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut } from "next-auth/react";
 import { toast } from "sonner";
 
 export default function OAuthBox() {
   const [state, setSetate] = useState<string>("");
-  const hasCalledRef = useRef(false);
 
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
@@ -21,29 +20,35 @@ export default function OAuthBox() {
       window.location.reload();
     },
   });
-  const { data: session } = useSession();
 
   const handleGoogleLogin = async () => {
-    await signOut({ redirect: false });
-    const result = await signIn("google", {
-      redirect: false,
-      prompt: "select_account",
-    });
+    try {
+      await signOut({ redirect: false });
 
-    if (result?.error) {
-      toast.error("Kirishda xatolik yuz berdi!");
+      const result = await signIn("google", {
+        redirect: false,
+        prompt: "select_account",
+      });
+
+      if (result?.error) {
+        toast.error("Kirishda xatolik yuz berdi!");
+        return;
+      }
+
+      const session = await getSession();
+
+      if (session?.user?.email) {
+        mutate(LOGIN_EMAIL, {
+          email: session.user.email,
+          auth_type: "google",
+        });
+      } else {
+        toast.error("Foydalanuvchi email topilmadi");
+      }
+    } catch (err) {
+      toast.error("Xatolik yuz berdi!");
     }
   };
-
-  useEffect(() => {
-    if (session?.user?.email && !hasCalledRef.current) {
-      hasCalledRef.current = true;
-      mutate(LOGIN_EMAIL, {
-        email: session.user.email,
-        auth_type: "google",
-      });
-    }
-  }, [session?.user?.email]);
 
   return (
     <Modal
