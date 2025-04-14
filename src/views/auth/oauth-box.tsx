@@ -1,7 +1,7 @@
 import Modal from "@/components/custom/modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ConfimForm from "./confirm-form";
 import { usePost } from "@/hooks/usePost";
 import { LOGIN_EMAIL } from "@/lib/api-endpoints";
@@ -19,7 +19,7 @@ export default function OAuthBox() {
       window.location.reload();
     },
   });
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const handleGoogleLogin = async () => {
     await signOut({ redirect: false });
@@ -30,10 +30,14 @@ export default function OAuthBox() {
 
     if (result?.error) {
       toast.error("Kirishda xatolik yuz berdi!");
-    } else if (session?.user?.email) {
-      mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
     }
   };
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.email) {
+      mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
+    }
+  }, [session, status]);
 
   return (
     <Modal
@@ -78,7 +82,7 @@ export default function OAuthBox() {
                 alt="Telegram orqali kiring"
                 className="mr-1"
               />
-              oogle orqali kirish
+              Google orqali kirish
             </span>
           </Button>
         </div>
