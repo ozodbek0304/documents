@@ -30,7 +30,7 @@ export default function OAuthBox() {
 
     if (result?.error) {
       toast.error("Kirishda xatolik yuz berdi!");
-    } else if (session?.user?.email && status === "authenticated") {
+    } else if (session?.user?.email) {
       mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
     }
   };
