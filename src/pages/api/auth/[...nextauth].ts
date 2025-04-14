@@ -8,7 +8,7 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY,
   callbacks: {
     async signIn({ user }) {
       if (user?.email?.endsWith("@gmail.com")) {

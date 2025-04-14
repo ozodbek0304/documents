@@ -12,7 +12,7 @@ import { useModal } from "@/hooks/use-modal";
 
 export default function OAuthBox() {
   const [state, setSetate] = useState<string>("");
-  const { setToken } = useAuthStore();
+  const { setToken, token } = useAuthStore();
   const { closeModal } = useModal("login-modal");
   const hasCalledRef = useRef(false);
 
@@ -40,11 +40,11 @@ export default function OAuthBox() {
   };
 
   useEffect(() => {
-    if (session?.user?.email && !hasCalledRef.current) {
+    if (session?.user?.email && !hasCalledRef.current && !token) {
       hasCalledRef.current = true;
       mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
     }
-  }, [session, mutate]);
+  }, [session, mutate, token]);
 
   return (
     <Modal

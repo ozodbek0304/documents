@@ -6,7 +6,7 @@ import { useGet } from "@/hooks/useGet";
 import { GET_VIEW } from "@/lib/api-endpoints";
 
 function generateAuthKey(
-  secretKey = process.env.NEXTAUTH_SECRET
+  secretKey = process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY
 ) {
   const timestamp = Math.floor(Date.now() / 1000);
   const secretData = `${timestamp}${secretKey}`;
@@ -25,6 +25,9 @@ export default function Header() {
     },
   });
 
+
+   console.log(process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY);
+   
   return (
     <header className="fixed w-full z-40 bg-background top-0">
       <div className="py-2 shadow-sm">
