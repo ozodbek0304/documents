@@ -7,8 +7,10 @@ import { usePost } from "@/hooks/usePost";
 import { LOGIN_EMAIL } from "@/lib/api-endpoints";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 export default function OAuthBox() {
+  const router = useRouter();
   const [state, setSetate] = useState<string>("");
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
@@ -16,7 +18,7 @@ export default function OAuthBox() {
         localStorage.setItem("token", data?.access_token);
       }
       toast.success("Muavffaqiyatli kirdingiz!");
-      window.location.reload();
+      router.push("/dashboard");
     },
   });
   const { data: session, status } = useSession();
@@ -32,7 +34,6 @@ export default function OAuthBox() {
       toast.error("Kirishda xatolik yuz berdi!");
     }
   };
-   
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.email) {

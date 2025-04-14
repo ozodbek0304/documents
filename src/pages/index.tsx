@@ -6,11 +6,10 @@ import { CATEGORIES_TOP, PRODUCTS_HOME } from "@/lib/api-endpoints";
 import { Document } from "@/types/products";
 import Hero, { CategoriesType } from "@/views/home/hero";
 import { ArrowRight, LayoutList } from "lucide-react";
-import { signIn } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 
 type DocumentHome = {
   products: Document[];
@@ -55,23 +54,6 @@ export async function getStaticProps() {
 
 export default function Home({ data, categories }: Props) {
   const { push } = useRouter();
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).google) {
-      (window as any).google.accounts.id.initialize({
-        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
-        callback: (response: any) => {
-          console.log("Google Token:", response.credential);
-          signIn("google", { id_token: response.credential });
-        },
-        auto_select: true,
-        prompt_parent_id: "google-one-tap",
-        cancel_on_tap_outside: false,
-      });
-
-      (window as any).google.accounts.id.prompt();
-    }
-  }, []);
 
   return (
     <Layout>
