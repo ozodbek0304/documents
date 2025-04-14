@@ -1,7 +1,7 @@
 import Modal from "@/components/custom/modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ConfimForm from "./confirm-form";
 import { usePost } from "@/hooks/usePost";
 import { LOGIN_EMAIL } from "@/lib/api-endpoints";
@@ -10,6 +10,8 @@ import { toast } from "sonner";
 
 export default function OAuthBox() {
   const [state, setSetate] = useState<string>("");
+  const [called, setCalled] = useState(false);
+
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
       console.log(data);
@@ -33,10 +35,14 @@ export default function OAuthBox() {
     if (result?.error) {
       toast.error("Kirishda xatolik yuz berdi!");
     }
-    if (session?.user?.email) {
+  };
+
+  useEffect(() => {
+    if (session?.user?.email && !called) {
+      setCalled(true); // faqat bir marta ishlaydi
       mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
     }
-  };
+  }, [session?.user?.email]);
 
   return (
     <Modal
