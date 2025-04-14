@@ -32,6 +32,7 @@ export default function OAuthBox() {
       toast.error("Kirishda xatolik yuz berdi!");
     }
   };
+   
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.email) {
