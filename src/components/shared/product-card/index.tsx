@@ -17,14 +17,13 @@ const bgGradients: { [key: string]: string } = {
   pdf: "from-red-50 to-red-100 border-red-400",
 };
 
-
 export default function ProductCard({ product }: { product: Document }) {
   return (
     <Link
       href={`/product/${product.slug}`}
       key={product.id}
       className={cn(
-        `group relative overflow-hidden sm:rounded-xl rounded-lg bg-gray-50 shadow-md transition-all duration-500 hover:-translate-y-2 
+        `group relative overflow-hidden sm:rounded-xl h-full rounded-lg bg-gray-50 shadow-md transition-all duration-500 hover:-translate-y-2 
         hover:shadow-xl
       border-t-3`,
         bgGradients[product.ext]
@@ -52,14 +51,15 @@ export default function ProductCard({ product }: { product: Document }) {
         </div>
       </div>
 
-      <div className="sm:p-3 p-2 bg-gray-50   rounded-b-xl">
+      <div className="sm:p-3 p-2 sm:h-[142px] bg-gray-50 flex flex-col gap-3 justify-between  rounded-b-xl">
         {/* Title */}
-        <h1 className="mb-3 sm:text-sm text-[13px] font-semibold text-gray-800 line-clamp-2">
+        <h1 className=" sm:text-sm text-[13px] font-semibold text-gray-800 line-clamp-2">
           {product.name}
         </h1>
 
-        {/* File info */}
-        <div className="mb-3 flex items-center sm:gap-3 gap-1">
+      <div className="flex flex-col gap-3">
+          {/* File info */}
+          <div className=" flex items-center sm:gap-3 gap-1">
           <div className="flex items-center gap-1.5">
             <BookOpen className={cn("h-4 w-4 text-gray-500")} />
             <span className="text-xs font-medium">
@@ -92,9 +92,12 @@ export default function ProductCard({ product }: { product: Document }) {
           </div>
           <div className="sm:flex hidden items-center gap-1.5 text-gray-500">
             <Download className={cn("h-4 w-4")} />
-            <span className="text-xs font-medium">{product.sold_count || 0}</span>
+            <span className="text-xs font-medium">
+              {product.sold_count || 0}
+            </span>
           </div>
         </div>
+      </div>
       </div>
     </Link>
   );
