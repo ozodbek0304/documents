@@ -18,7 +18,7 @@ export default function OAuthBox() {
         localStorage.setItem("token", data?.access_token);
       }
       toast.success("Muavffaqiyatli kirdingiz!");
-      router.push("/dashboard");
+      router.push("/");
     },
   });
   const { data: session, status } = useSession();
