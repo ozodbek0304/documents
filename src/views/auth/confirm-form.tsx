@@ -1,11 +1,11 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
-
 import FormInputOTP from "@/components/form/input-otp";
 import { usePost } from "@/hooks/usePost";
 import { toast } from "sonner";
 import { LOGIN_TELEGRAM } from "@/lib/api-endpoints";
 import { useModal } from "@/hooks/use-modal";
+import { useAuthStore } from "@/store/auth-store";
 
 type ConfimFields = {
   code: string;
@@ -14,12 +14,14 @@ type ConfimFields = {
 export default function ConfimForm() {
   const form = useForm<ConfimFields>();
   const { closeModal } = useModal("login-modal");
+  const { setToken } = useAuthStore();
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
-      localStorage.setItem("token", data?.access_token);
-      toast.success("Muavffaqiyatli kirdingiz!");
+      if (data?.access_token) {
+        setToken(data?.access_token);
+      }
       closeModal();
-      window.location.reload();
+      toast.success("Muavffaqiyatli kirdingiz!");
     },
   });
 

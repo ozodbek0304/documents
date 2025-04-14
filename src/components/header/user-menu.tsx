@@ -10,18 +10,18 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useLocalStorage } from "@/hooks/useLocalStorge";
 import { signOut } from "next-auth/react";
+import { useAuthStore } from "@/store/auth-store";
 
 export default function UserMenu() {
   const { openModal } = useModal("login-modal");
-  const token = useLocalStorage("token");
+  const { token, clearToken } = useAuthStore();
 
   const functionLogOut = async () => {
-    localStorage.clear();
+    clearToken();
     await signOut({ redirect: true, callbackUrl: "/" });
-    window.location.reload();
   };
+  console.log(token);
 
   return (
     <div className="flex gap-2">

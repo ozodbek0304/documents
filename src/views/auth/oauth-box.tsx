@@ -1,55 +1,50 @@
 import Modal from "@/components/custom/modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ConfimForm from "./confirm-form";
 import { usePost } from "@/hooks/usePost";
 import { LOGIN_EMAIL } from "@/lib/api-endpoints";
-import { getSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { useAuthStore } from "@/store/auth-store";
+import { useModal } from "@/hooks/use-modal";
 
 export default function OAuthBox() {
   const [state, setSetate] = useState<string>("");
+  const { setToken } = useAuthStore();
+  const { closeModal } = useModal("login-modal");
+  const hasCalledRef = useRef(false);
 
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
       if (data?.access_token) {
-        localStorage.setItem("token", data?.access_token);
+        setToken(data?.access_token);
       }
+      closeModal();
       toast.success("Muavffaqiyatli kirdingiz!");
-      window.location.reload();
     },
   });
+  const { data: session } = useSession();
 
   const handleGoogleLogin = async () => {
-    try {
-      await signOut({ redirect: false });
+    await signOut({ redirect: false });
+    const result = await signIn("google", {
+      redirect: false,
+      prompt: "select_account",
+    });
 
-      const result = await signIn("google", {
-        redirect: false,
-        prompt: "select_account",
-      });
-
-      if (result?.error) {
-        toast.error("Kirishda xatolik yuz berdi!");
-        return;
-      }
-
-      const session = await getSession();
-
-      if (session?.user?.email) {
-        mutate(LOGIN_EMAIL, {
-          email: session.user.email,
-          auth_type: "google",
-        });
-      } else {
-        toast.error("Foydalanuvchi email topilmadi");
-      }
-    } catch (err) {
-      toast.error("Xatolik yuz berdi!");
-      console.error(err);
+    if (result?.error) {
+      toast.error("Kirishda xatolik yuz berdi!");
     }
   };
+
+  useEffect(() => {
+    if (session?.user?.email && !hasCalledRef.current) {
+      hasCalledRef.current = true;
+      mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
+    }
+  }, [session, mutate]);
 
   return (
     <Modal
@@ -94,7 +89,7 @@ export default function OAuthBox() {
                 alt="Telegram orqali kiring"
                 className="mr-1"
               />
-              oogle orqali kirish
+              Google orqali kirish
             </span>
           </Button>
         </div>

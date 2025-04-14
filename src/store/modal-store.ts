@@ -7,7 +7,7 @@ type ModalState = {
 };
 
 export const useModalStore = create<ModalState>((set) => ({
-    openModals: {}, // Boshlang‘ich holat - hech qaysi modal ochiq emas
+    openModals: {}, 
     openModal: (modalKey) =>
         set((state) => ({ openModals: { ...state.openModals, [modalKey]: true } })),
     closeModal: (modalKey) =>
