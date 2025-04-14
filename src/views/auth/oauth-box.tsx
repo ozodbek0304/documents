@@ -19,7 +19,7 @@ export default function OAuthBox() {
       window.location.reload();
     },
   });
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const handleGoogleLogin = async () => {
     await signOut({ redirect: false });
