@@ -1,16 +1,14 @@
 import Modal from "@/components/custom/modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ConfimForm from "./confirm-form";
 import { usePost } from "@/hooks/usePost";
 import { LOGIN_EMAIL } from "@/lib/api-endpoints";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { toast } from "sonner";
-import { useRouter } from "next/router";
 
 export default function OAuthBox() {
-  const router = useRouter();
   const [state, setSetate] = useState<string>("");
   const { mutate, isPending } = usePost({
     onSuccess: (data) => {
@@ -18,7 +16,7 @@ export default function OAuthBox() {
         localStorage.setItem("token", data?.access_token);
       }
       toast.success("Muavffaqiyatli kirdingiz!");
-      router.push("/");
+      window.location.reload();
     },
   });
   const { data: session, status } = useSession();
@@ -32,14 +30,10 @@ export default function OAuthBox() {
 
     if (result?.error) {
       toast.error("Kirishda xatolik yuz berdi!");
-    }
-  };
-
-  useEffect(() => {
-    if (status === "authenticated" && session?.user?.email) {
+    } else if (session?.user?.email && status === "authenticated") {
       mutate(LOGIN_EMAIL, { email: session.user.email, auth_type: "google" });
     }
-  }, [session, status]);
+  };
 
   return (
     <Modal
@@ -84,7 +78,7 @@ export default function OAuthBox() {
                 alt="Telegram orqali kiring"
                 className="mr-1"
               />
-              Google orqali kirish
+              oogle orqali kirish
             </span>
           </Button>
         </div>
