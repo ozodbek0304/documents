@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { signOut } from "next-auth/react";
 import { useAuthStore } from "@/store/auth-store";
+import { toast } from "sonner";
 
 export default function UserMenu() {
   const { openModal } = useModal("login-modal");
@@ -19,9 +20,9 @@ export default function UserMenu() {
 
   const functionLogOut = async () => {
     clearToken();
+    toast.warning("Muavffaqiyatli chiqdingiz!");
     await signOut({ redirect: true, callbackUrl: "/" });
   };
-  console.log(token);
 
   return (
     <div className="flex gap-2">
