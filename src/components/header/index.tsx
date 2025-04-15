@@ -20,7 +20,7 @@ export default function Header() {
   const {} = useGet(GET_VIEW, {
     config: {
       headers: {
-        Authorization: generateAuthKey(),
+        Auth: generateAuthKey(),
       },
     },
   });
