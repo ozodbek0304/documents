@@ -1,8 +1,12 @@
 import { GetServerSideProps } from "next";
 import Layout from "@/components/layout";
 import ProductDetail from "@/views/product-detail";
-import { getRequest } from "@/hooks/useGet";
-import { PRODUCTS_DETAILS } from "@/lib/api-endpoints";
+import { getRequest, useGet } from "@/hooks/useGet";
+import {
+  GET_VIEW,
+  GET_VIEW_PRODUCTS,
+  PRODUCTS_DETAILS,
+} from "@/lib/api-endpoints";
 import Head from "next/head";
 import React from "react";
 import ProductCard from "@/components/shared/product-card";
@@ -18,6 +22,7 @@ import { Document } from "@/types/products";
 type Props = {
   product: Document | null;
   error: string | null;
+  slug?: string;
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
@@ -32,14 +37,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
     const product = await getRequest(`${PRODUCTS_DETAILS}/${slug}`, {
       headers: headers,
     });
-
-    try {
-      await getRequest(`common/products/calculate-views/${slug}`);
-    } catch (error: any) {
-      console.log("Categories error:", error);
-    }
     return {
-      props: { product, error: null },
+      props: { product, slug: slug, error: null },
     };
   } catch (error: any) {
     return {
@@ -51,7 +50,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   }
 };
 
-export default function ProductPage({ product, error }: Props) {
+export default function ProductPage({ product, error, slug }: Props) {
+  const {} = useGet(`${GET_VIEW_PRODUCTS}/${slug}`);
+
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
 
