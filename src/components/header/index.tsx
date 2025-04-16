@@ -5,7 +5,6 @@ import XXH from "xxhashjs";
 import { useGet } from "@/hooks/useGet";
 import { GET_VIEW } from "@/lib/api-endpoints";
 
-
 export function generateAuthKey(
   secretKey = process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY
 ) {
@@ -25,7 +24,6 @@ export default function Header() {
       },
     },
   });
-
 
   return (
     <header className="fixed w-full z-40 bg-background top-0">

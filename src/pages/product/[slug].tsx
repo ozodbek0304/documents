@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import Layout from "@/components/layout";
 import ProductDetail from "@/views/product-detail";
 import { getRequest } from "@/hooks/useGet";
-import { GET_VIEW, PRODUCTS_DETAILS } from "@/lib/api-endpoints";
+import { PRODUCTS_DETAILS } from "@/lib/api-endpoints";
 import Head from "next/head";
 import React from "react";
 import ProductCard from "@/components/shared/product-card";
@@ -33,14 +33,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       headers: headers,
     });
 
-    try {
-      await getRequest(GET_VIEW, {
-        headers: headers,
-      });
-    } catch (error: any) {
-      console.log("Categories error:", error);
-    }
-
     return {
       props: { product, error: null },
     };
@@ -53,6 +45,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
     };
   }
 };
+
 
 export default function ProductPage({ product, error }: Props) {
   if (error) return <p>{error}</p>;
