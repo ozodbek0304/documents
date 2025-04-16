@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import Layout from "@/components/layout";
 import ProductDetail from "@/views/product-detail";
-import { getRequest, useGet } from "@/hooks/useGet";
+import { getRequest } from "@/hooks/useGet";
 import { GET_VIEW, PRODUCTS_DETAILS } from "@/lib/api-endpoints";
 import Head from "next/head";
 import React from "react";
@@ -14,7 +14,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Document } from "@/types/products";
-import { generateAuthKey } from "@/components/header";
 
 type Props = {
   product: Document | null;
@@ -34,6 +33,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       headers: headers,
     });
 
+    try {
+      await getRequest(GET_VIEW, {
+        headers: headers,
+      });
+    } catch (error: any) {
+      console.log("Categories error:", error);
+    }
+
     return {
       props: { product, error: null },
     };
@@ -48,16 +55,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 };
 
 export default function ProductPage({ product, error }: Props) {
-  const {} = useGet(GET_VIEW, {
-    config: {
-      headers: {
-        Auth: generateAuthKey(),
-      },
-    },
-  });
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
-
 
   return (
     <Layout>
