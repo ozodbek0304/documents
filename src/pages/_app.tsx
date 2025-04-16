@@ -7,23 +7,21 @@ import { useGet } from "@/hooks/useGet";
 import { generateAuthKey } from "@/components/header";
 import { GET_VIEW } from "@/lib/api-endpoints";
 import { useEffect } from "react";
+import axios from "axios";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await useGet(GET_VIEW, {
-          config: {
-            headers: {
-              Auth: generateAuthKey(),
-            },
+        await axios.get(GET_VIEW, {
+          headers: {
+            Auth: generateAuthKey(),
           },
         });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Xatolik yuz berdi:", error);
       }
     };
-
     fetchData();
   }, []);
 
