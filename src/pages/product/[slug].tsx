@@ -3,7 +3,6 @@ import Layout from "@/components/layout";
 import ProductDetail from "@/views/product-detail";
 import { getRequest, useGet } from "@/hooks/useGet";
 import {
-  GET_VIEW,
   GET_VIEW_PRODUCTS,
   PRODUCTS_DETAILS,
 } from "@/lib/api-endpoints";
