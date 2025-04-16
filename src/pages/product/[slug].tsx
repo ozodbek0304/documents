@@ -48,9 +48,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 };
 
 export default function ProductPage({ product, error }: Props) {
-  if (error) return <p>{error}</p>;
-  if (!product) return <p>Yuklanmoqda...</p>;
-
   const {} = useGet(GET_VIEW, {
     config: {
       headers: {
@@ -58,6 +55,9 @@ export default function ProductPage({ product, error }: Props) {
       },
     },
   });
+  if (error) return <p>{error}</p>;
+  if (!product) return <p>Yuklanmoqda...</p>;
+
 
   return (
     <Layout>
