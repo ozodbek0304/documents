@@ -51,7 +51,7 @@ export default function ProductPage({ product, error, slug }: Props) {
   useGet(`${GET_VIEW_PRODUCTS}/${slug}`, { options: { enabled: state } });
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {}, 2000);
+    const timeoutId = setTimeout(() => {}, 5000);
     setState(true);
     return () => clearTimeout(timeoutId);
   }, [slug]);
