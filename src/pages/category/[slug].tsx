@@ -1,6 +1,5 @@
 import Layout from "@/components/layout";
 import React from "react";
-import { getRequest } from "@/hooks/useGet";
 import { CATEGORIES, PRODUCTS_HOME } from "@/lib/api-endpoints";
 import CategorySidebar from "@/components/pages/category";
 import ProductCard from "@/components/shared/product-card";
@@ -26,42 +25,6 @@ interface CategoryPageProps {
   currentSlug: string;
 }
 
-// export async function getServerSideProps({
-//   params,
-//   query = {},
-// }: {
-//   params: { slug: string };
-//   query: any;
-// }) {
-//   const { slug } = params;
-//   const { size = 20, page = 1, search = "" } = query;
-
-//   let categories = [];
-//   let document = null;
-
-//   try {
-//     categories = await getRequest(CATEGORIES);
-//   } catch (error: any) {
-//     console.log(error);
-//     categories = [];
-//   }
-//   try {
-//     document = await getRequest(
-//       `${PRODUCTS_HOME}/${slug}?size=${size}&page=${page}&search=${search}`
-//     );
-//   } catch (error: any) {
-//     console.log(error);
-//     document = { count: 0, page: 1, pages: 0, results: [] };
-//   }
-
-//   return {
-//     props: {
-//       document,
-//       categories,
-//       currentSlug: slug,
-//     },
-//   };
-// }
 
 export async function getServerSideProps(context: {
   params: { slug: string };
