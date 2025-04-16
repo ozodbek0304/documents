@@ -2,8 +2,10 @@ import Image from "next/image";
 import UserMenu from "./user-menu";
 import Link from "next/link";
 import XXH from "xxhashjs";
+import { useGet } from "@/hooks/useGet";
+import { GET_VIEW } from "@/lib/api-endpoints";
 
- 
+
 export function generateAuthKey(
   secretKey = process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY
 ) {
@@ -16,7 +18,13 @@ export function generateAuthKey(
 }
 
 export default function Header() {
-
+  const {} = useGet(GET_VIEW, {
+    config: {
+      headers: {
+        Auth: generateAuthKey(),
+      },
+    },
+  });
 
 
   return (

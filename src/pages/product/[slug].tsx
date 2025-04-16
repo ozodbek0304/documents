@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import Layout from "@/components/layout";
 import ProductDetail from "@/views/product-detail";
-import { getRequest } from "@/hooks/useGet";
-import { PRODUCTS_DETAILS } from "@/lib/api-endpoints";
+import { getRequest, useGet } from "@/hooks/useGet";
+import { GET_VIEW, PRODUCTS_DETAILS } from "@/lib/api-endpoints";
 import Head from "next/head";
 import React from "react";
 import ProductCard from "@/components/shared/product-card";
@@ -14,6 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Document } from "@/types/products";
+import { generateAuthKey } from "@/components/header";
 
 type Props = {
   product: Document | null;
@@ -49,6 +50,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 export default function ProductPage({ product, error }: Props) {
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
+
+  const {} = useGet(GET_VIEW, {
+    config: {
+      headers: {
+        Auth: generateAuthKey(),
+      },
+    },
+  });
 
   return (
     <Layout>
