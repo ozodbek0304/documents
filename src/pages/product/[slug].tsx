@@ -33,6 +33,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       headers: headers,
     });
 
+    try {
+      await getRequest(`common/products/calculate-views/${slug}`);
+    } catch (error: any) {
+      console.log("Categories error:", error);
+    }
     return {
       props: { product, error: null },
     };
@@ -45,7 +50,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
     };
   }
 };
-
 
 export default function ProductPage({ product, error }: Props) {
   if (error) return <p>{error}</p>;
