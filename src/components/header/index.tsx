@@ -2,7 +2,7 @@ import Image from "next/image";
 import UserMenu from "./user-menu";
 import Link from "next/link";
 import XXH from "xxhashjs";
-import { getRequest } from "@/hooks/useGet";
+import { useGet } from "@/hooks/useGet";
 import { GET_VIEW } from "@/lib/api-endpoints";
 
 export function generateAuthKey(
@@ -16,25 +16,14 @@ export function generateAuthKey(
   return authKey;
 }
 
-export async function getStaticProps() {
-  try {
-    await getRequest(GET_VIEW, {
+export default function Header() {
+  const {} = useGet(GET_VIEW, {
+    config: {
       headers: {
         Auth: generateAuthKey(),
       },
-    });
-  } catch (error: any) {
-    console.log("Products error:", error);
-  }
-
-  return {
-    props: {},
-    revalidate: 10,
-  };
-}
-
-export default function Header() {
-
+    },
+  });
 
   return (
     <header className="fixed w-full z-40 bg-background top-0">
