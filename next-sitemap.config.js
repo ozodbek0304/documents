@@ -9,7 +9,8 @@ export default {
   robotsTxtOptions: {
     policies: [
       { userAgent: "*", allow: "/" },
-      { userAgent: "*", disallow: "/dashboard" }
+      { userAgent: "*", disallow: "/dashboard" },
+      { userAgent: "*", disallow: "/purchased" }
     ],
   },
 };

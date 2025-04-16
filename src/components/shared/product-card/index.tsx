@@ -7,7 +7,7 @@ import { fileColors } from "@/views/home/hero";
 import { cn } from "@/lib/utils";
 import { Document } from "@/types/products";
 
-const bgGradients: { [key: string]: string } = {
+ export const bgGradients: { [key: string]: string } = {
   doc: "from-blue-50 to-blue-100 border-blue-400",
   docx: "from-blue-50 to-blue-100 border-blue-400",
   xls: "from-green-50 to-green-100 border-green-400",

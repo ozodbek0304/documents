@@ -27,8 +27,7 @@ export default function Header() {
   });
 
 
-   console.log(process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY);
-   
+
   return (
     <header className="fixed w-full z-40 bg-background top-0">
       <div className="py-2 shadow-sm">

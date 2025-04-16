@@ -33,7 +33,7 @@ export async function getServerSideProps({
   query: any;
 }) {
   const { slug } = params;
-  const { size = 20, page = 1 } = query;
+  const { size = 20, page = 1, search = "" } = query;
 
   let categories = [];
   let document = null;
@@ -46,7 +46,7 @@ export async function getServerSideProps({
   }
   try {
     document = await getRequest(
-      `${PRODUCTS_HOME}/${slug}?size=${size}&page=${page}`
+      `${PRODUCTS_HOME}/${slug}?size=${size}&page=${page}&search=${search}`
     );
   } catch (error: any) {
     console.log(error);
