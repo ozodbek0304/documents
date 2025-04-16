@@ -25,21 +25,29 @@ type Props = {
   categories: CategoriesType[];
 };
 
-export async function getStaticProps() {
+export async function getStaticProps(context: any) {
+  const headers = {
+    Cookie: context.req ? context.req.headers.cookie : "",
+  };
+
   let data = [];
   let categories = [];
 
   try {
-    data = await getRequest(PRODUCTS_HOME);
+    data = await getRequest(PRODUCTS_HOME, {
+      headers: headers,
+    });
   } catch (error: any) {
-    console.log(error);
+    console.log("Products error:", error);
     data = [];
   }
 
   try {
-    categories = await getRequest(CATEGORIES_TOP);
+    categories = await getRequest(CATEGORIES_TOP, {
+      headers: headers,
+    });
   } catch (error: any) {
-    console.log(error);
+    console.log("Categories error:", error);
     categories = [];
   }
 

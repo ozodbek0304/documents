@@ -24,9 +24,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
   const { slug } = context.params as { slug: string };
+  const headers = {
+    Cookie: context.req.headers.cookie || "",
+  };
 
   try {
-    const product = await getRequest(`${PRODUCTS_DETAILS}/${slug}`);
+    const product = await getRequest(`${PRODUCTS_DETAILS}/${slug}`, {
+      headers: headers,
+    });
 
     return {
       props: { product, error: null },

@@ -13,6 +13,7 @@ import { useCatalogStore } from "@/store/catalogStorge";
 import ParamPagination from "@/components/custom/pagination";
 import Head from "next/head";
 import axios from "axios";
+import { getRequest } from "@/hooks/useGet";
 
 interface CategoryPageProps {
   categories: CategoriesType[];
@@ -24,7 +25,6 @@ interface CategoryPageProps {
   };
   currentSlug: string;
 }
-
 
 export async function getServerSideProps(context: {
   params: { slug: string };
@@ -42,13 +42,9 @@ export async function getServerSideProps(context: {
   let document = null;
 
   try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${CATEGORIES}`,
-      {
-        headers,
-      }
-    );
-    categories = res.data;
+    categories = await getRequest(CATEGORIES, {
+      headers: headers,
+    });
   } catch (error) {
     console.log("Categories error:", error);
     categories = [];

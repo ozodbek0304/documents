@@ -13,10 +13,12 @@ import {
 import { signOut } from "next-auth/react";
 import { useAuthStore } from "@/store/auth-store";
 import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 export default function UserMenu() {
   const { openModal } = useModal("login-modal");
   const { token, clearToken } = useAuthStore();
+  const { push } = useRouter();
 
   const functionLogOut = async () => {
     clearToken();
@@ -41,7 +43,8 @@ export default function UserMenu() {
               className="p-2 cursor-pointer hover:text-blue-600"
               value="1"
             >
-              <LayoutList size={18} /> Mening mahsulotlarim
+              <LayoutList size={18} onClick={() => push("/purchased")} /> Mening
+              mahsulotlarim
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem
               onClick={functionLogOut}

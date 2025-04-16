@@ -2,9 +2,8 @@ import Image from "next/image";
 import UserMenu from "./user-menu";
 import Link from "next/link";
 import XXH from "xxhashjs";
-import { useGet } from "@/hooks/useGet";
+import { getRequest } from "@/hooks/useGet";
 import { GET_VIEW } from "@/lib/api-endpoints";
-
 
 function generateAuthKey(
   secretKey = process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY
@@ -17,17 +16,24 @@ function generateAuthKey(
   return authKey;
 }
 
-export default function Header() {
-  const {} = useGet(GET_VIEW, {
-    config: {
+export async function getStaticProps() {
+  try {
+    await getRequest(GET_VIEW, {
       headers: {
         Auth: generateAuthKey(),
       },
-    },
-  });
+    });
+  } catch (error: any) {
+    console.log("Products error:", error);
+  }
 
+  return {
+    props: {},
+    revalidate: 10,
+  };
+}
 
-
+export default function Header() {
   return (
     <header className="fixed w-full z-40 bg-background top-0">
       <div className="py-2 shadow-sm">
