@@ -2,12 +2,9 @@ import { GetServerSideProps } from "next";
 import Layout from "@/components/layout";
 import ProductDetail from "@/views/product-detail";
 import { getRequest, useGet } from "@/hooks/useGet";
-import {
-  GET_VIEW_PRODUCTS,
-  PRODUCTS_DETAILS,
-} from "@/lib/api-endpoints";
+import { GET_VIEW_PRODUCTS, PRODUCTS_DETAILS } from "@/lib/api-endpoints";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "@/components/shared/product-card";
 import {
   Carousel,
@@ -50,7 +47,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 };
 
 export default function ProductPage({ product, error, slug }: Props) {
-  const {} = useGet(`${GET_VIEW_PRODUCTS}/${slug}`);
+  
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      useGet(`${GET_VIEW_PRODUCTS}/${slug}`);
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, [slug]);
 
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
