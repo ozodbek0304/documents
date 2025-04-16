@@ -5,6 +5,7 @@ import XXH from "xxhashjs";
 import { useGet } from "@/hooks/useGet";
 import { GET_VIEW } from "@/lib/api-endpoints";
 
+
 function generateAuthKey(
   secretKey = process.env.NEXT_PUBLIC_CLIENT_SECRET_KEY
 ) {
