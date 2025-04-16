@@ -4,7 +4,7 @@ import ProductDetail from "@/views/product-detail";
 import { getRequest, useGet } from "@/hooks/useGet";
 import { GET_VIEW_PRODUCTS, PRODUCTS_DETAILS } from "@/lib/api-endpoints";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "@/components/shared/product-card";
 import {
   Carousel,
@@ -47,12 +47,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 };
 
 export default function ProductPage({ product, error, slug }: Props) {
-  
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      useGet(`${GET_VIEW_PRODUCTS}/${slug}`);
-    }, 2000);
+  const [state, setState] = useState<boolean>(false);
+  useGet(`${GET_VIEW_PRODUCTS}/${slug}`, { options: { enabled: state } });
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {}, 2000);
+    setState(true);
     return () => clearTimeout(timeoutId);
   }, [slug]);
 
