@@ -9,7 +9,7 @@ export const api = axios.create({
   withCredentials: true,
 });
 
-const getToken = () => {
+export const getToken = () => {
   if (typeof window !== "undefined") {
     return localStorage.getItem("token");
   }
