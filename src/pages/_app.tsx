@@ -6,15 +6,26 @@ import type { AppProps } from "next/app";
 import { useGet } from "@/hooks/useGet";
 import { generateAuthKey } from "@/components/header";
 import { GET_VIEW } from "@/lib/api-endpoints";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const {} = useGet(GET_VIEW, {
-    config: {
-      headers: {
-        Auth: generateAuthKey(),
-      },
-    },
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await useGet(GET_VIEW, {
+          config: {
+            headers: {
+              Auth: generateAuthKey(),
+            },
+          },
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <SessionProvider session={pageProps.session}>
