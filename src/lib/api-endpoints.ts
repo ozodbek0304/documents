@@ -8,3 +8,4 @@ export const PRODUCTS_SEARCH = "common/products/search";
 export const SIMILAR_PRODUCTS = "common/products/similar";
 export const GET_VIEW = "auth/set-cookie";
 export const GET_VIEW_PRODUCTS = "common/products/calculate-views";
+export const PAYMENT="customers/payments/create-product-order"

@@ -17,6 +17,8 @@ import { useModal } from "@/hooks/use-modal";
 import Modal from "@/components/custom/modal";
 import { DocumentPurchase } from "@/views/product-detail/payment";
 import { Document } from "@/types/products";
+import { useAuthStore } from "@/store/auth-store";
+import { downloadFile } from "@/lib/download";
 
 export const handleShare = (slug: string) => {
   const url = encodeURIComponent(`https://hujjat24.uz/product/${slug}`);
@@ -24,9 +26,10 @@ export const handleShare = (slug: string) => {
   window.open(telegramUrl, "_blank");
 };
 
-
 export default function ProductAction({ product }: { product: Document }) {
-  const { openModal } = useModal();
+  const { openModal: paymentModal } = useModal();
+  const { openModal: loginModal } = useModal("login-modal");
+  const { token } = useAuthStore();
 
   return (
     <div className="w-full space-y-3">
@@ -111,7 +114,7 @@ export default function ProductAction({ product }: { product: Document }) {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-xl p-5 shadow-sm border space-y-3 ">
+      <div className="bg-white rounded-xl p-5 shadow-sm border space-y-2 ">
         <div className="flex items-center justify-between">
           <div className="text-slate-600 flex items-center gap-1">
             <BadgeDollarSign className="w-5 h-5" /> <span>Narxi:</span>
@@ -122,11 +125,25 @@ export default function ProductAction({ product }: { product: Document }) {
         </div>
         <Separator />
         <Button
-          onClick={openModal}
+          onClick={() => {
+            if (token) {
+              if (product?.file_url) {
+                downloadFile({
+                  data: product.file_url,
+                  name: product.name,
+                  extension: product?.ext,
+                });
+              } else {
+                paymentModal();
+              }
+            } else {
+              loginModal();
+            }
+          }}
           className="w-full font-mediumI think hello nugget medium rounded-full bg-gradient-to-r from-blue-600
        to-indigo-600 px-5 py-2 text-white shadow-md cursor-pointer transition-transform hover:scale-105"
         >
-          Hoziroq sotib olish
+          {product?.file_url ? "Yuklab olish" : "Hoziroq sotib olish"}
         </Button>
       </div>
 

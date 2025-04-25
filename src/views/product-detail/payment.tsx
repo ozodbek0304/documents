@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Check, Info, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,9 +15,41 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Document } from "@/types/products";
+import { usePost } from "@/hooks/usePost";
+import ErrorMessage from "@/components/ui/error-message";
+import { PAYMENT } from "@/lib/api-endpoints";
+import { toast } from "sonner";
+import { useModal } from "@/hooks/use-modal";
+import { useRouter } from "next/router";
 
 export function DocumentPurchase({ product }: { product: Document }) {
-  const [paymentMethod, setPaymentMethod] = useState("click");
+  const [paymentMethod, setPaymentMethod] = useState("1");
+  const [error, setErrorr] = useState("");
+  const { closeModal } = useModal();
+  const { push } = useRouter();
+  const { mutate, isPending } = usePost({
+    onSuccess: (data) => {
+      push(data?.payment_url);
+      closeModal();
+    },
+  });
+
+  const onSubmit = () => {
+    if (paymentMethod) {
+      mutate(PAYMENT, {
+        provider: Number(paymentMethod),
+        product_id: product.id,
+      });
+    } else {
+      setErrorr("Iltimos to'lov turini tanlang");
+    }
+  };
+
+  useEffect(() => {
+    if (paymentMethod) {
+      setErrorr("");
+    }
+  }, [paymentMethod]);
 
   return (
     <Card className="mt-4">
@@ -31,17 +63,13 @@ export function DocumentPurchase({ product }: { product: Document }) {
         <div className="space-y-3">
           <div className="font-medium">To'lov usuli</div>
           <RadioGroup
-            defaultValue="click"
+            defaultValue={paymentMethod}
             value={paymentMethod}
             onValueChange={setPaymentMethod}
             className="grid grid-cols-2 gap-4"
           >
             <div>
-              <RadioGroupItem
-                value="click"
-                id="click"
-                className="peer sr-only"
-              />
+              <RadioGroupItem value="1" id="click" className="peer sr-only" />
               <Label
                 htmlFor="click"
                 className="flex  sm:w-[242px] sm:h-[113px] h-20  items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-purple-500 [&:has([data-state=checked])]:border-purple-500"
@@ -57,11 +85,7 @@ export function DocumentPurchase({ product }: { product: Document }) {
               </Label>
             </div>
             <div>
-              <RadioGroupItem
-                value="payme"
-                id="payme"
-                className="peer sr-only"
-              />
+              <RadioGroupItem disabled value="2" id="payme" className="peer sr-only" />
               <Label
                 htmlFor="payme"
                 className="flex flex-col sm:w-[242px] sm:h-[113px] h-20 items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-purple-500 [&:has([data-state=checked])]:border-purple-500"
@@ -77,6 +101,7 @@ export function DocumentPurchase({ product }: { product: Document }) {
               </Label>
             </div>
           </RadioGroup>
+          <ErrorMessage className="text-sm">{error}</ErrorMessage>
         </div>
 
         <div className="rounded-lg border bg-amber-50 p-4">
@@ -105,11 +130,18 @@ export function DocumentPurchase({ product }: { product: Document }) {
           </div>
         </div>
       </CardContent>
+
       <CardFooter className="flex flex-col gap-4">
-        <Button className="w-full gap-2">
+        <Button
+          onClick={onSubmit}
+          loading={isPending}
+          disabled={isPending}
+          className="w-full gap-2 cursor-pointer"
+        >
           <ShieldCheck className="h-4 w-4" />
           Sotib olish
         </Button>
+
         <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-1">
           <Check className="h-4 w-4 text-green-500" />
           <span>Sotib olgandan keyin Suv belgisi o'chiriladi</span>

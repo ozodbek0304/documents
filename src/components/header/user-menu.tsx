@@ -42,9 +42,12 @@ export default function UserMenu() {
             <DropdownMenuRadioItem
               className="p-2 cursor-pointer hover:text-blue-600"
               value="1"
+              onClick={(e) => {
+                e.stopPropagation();
+                push("/purchased");
+              }}
             >
-              <LayoutList size={18} onClick={() => push("/purchased")} /> Mening
-              mahsulotlarim
+              <LayoutList size={18} /> Mening mahsulotlarim
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem
               onClick={functionLogOut}

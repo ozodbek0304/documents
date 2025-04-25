@@ -5,6 +5,7 @@ export interface Document {
     desc: string;
     slug: string;
     price: number;
+    file_url:Blob;
     category_id: string;
     category_name: string;
     tags: string[];

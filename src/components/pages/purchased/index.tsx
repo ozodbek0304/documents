@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { fileColors } from "@/views/home/hero";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { downloadFile } from "@/lib/download";
 
 const tableHead = [
   {
@@ -53,6 +54,7 @@ const data = [
     price: "15000",
     sold_date: "2025-04-21",
     type: "xlsx",
+    file_url: "",
   },
   {
     id: 2,
@@ -62,6 +64,7 @@ const data = [
     price: "15000",
     sold_date: "2025-04-21",
     type: "pdf",
+    file_url: "",
   },
   {
     id: 3,
@@ -71,6 +74,7 @@ const data = [
     price: "15000",
     sold_date: "2025-04-21",
     type: "docx",
+    file_url: "",
   },
 ];
 
@@ -107,7 +111,7 @@ function PurchasedPage() {
               <TableCell>{item.category}</TableCell>
               <TableCell>{item.price} so'm</TableCell>
               <TableCell>{item.sold_date}</TableCell>
-              <TableCell >
+              <TableCell>
                 <div
                   className={cn(
                     "inline-block rounded-full  text-white px-3 py-0.5 text-xs font-bold ",
@@ -118,9 +122,22 @@ function PurchasedPage() {
                 </div>
               </TableCell>
               <TableCell className="text-center">
-               <Button variant={"ghost"} className="cursor-pointer hover:text-blue-600">
-               <Download size={18} />
-               </Button>
+                <Button
+                  onClick={() => {
+                   if (item.file_url) {
+                    downloadFile({
+                      data: item.file_url,
+                      name: item.title,
+                      extension: item?.type,
+                    });
+                   }
+                  }}
+                  disabled={Boolean(item.file_url)}
+                  variant={"ghost"}
+                  className="cursor-pointer hover:text-blue-600"
+                >
+                  <Download size={18} />
+                </Button>
               </TableCell>
             </TableRow>
           ))}
