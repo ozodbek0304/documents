@@ -18,7 +18,6 @@ import { Document } from "@/types/products";
 import { usePost } from "@/hooks/usePost";
 import ErrorMessage from "@/components/ui/error-message";
 import { PAYMENT } from "@/lib/api-endpoints";
-import { toast } from "sonner";
 import { useModal } from "@/hooks/use-modal";
 import { useRouter } from "next/router";
 
