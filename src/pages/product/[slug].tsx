@@ -53,7 +53,7 @@ export default function ProductPage({ product, error, slug }: Props) {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setState(true);
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timeoutId);
   }, [slug]);
