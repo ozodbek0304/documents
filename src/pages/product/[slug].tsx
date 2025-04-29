@@ -58,6 +58,7 @@ export default function ProductPage({ product, error, slug }: Props) {
     return () => clearTimeout(timeoutId);
   }, [slug]);
 
+
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
 

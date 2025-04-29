@@ -31,6 +31,8 @@ export default function ProductAction({ product }: { product: Document }) {
   const { openModal: loginModal } = useModal("login-modal");
   const { token } = useAuthStore();
 
+  console.log(product);
+
   return (
     <div className="w-full space-y-3">
       <div className="bg-white rounded-xl p-5 shadow-sm border ">
