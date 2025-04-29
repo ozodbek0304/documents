@@ -3,16 +3,12 @@ import PurchasedPage from "@/components/pages/purchased";
 import { getToken } from "@/constants/api";
 import React from "react";
 import NotFound from "./404";
-
+import { useAuthStore } from "@/store/auth-store";
 
 function Purchased() {
-  const token= getToken();
+  const { token } = useAuthStore();
 
-  return (
-    <Layout>
-     {token ? <PurchasedPage /> : <NotFound/>}
-    </Layout>
-  );
+  return <Layout>{token ? <PurchasedPage /> : <NotFound />}</Layout>;
 }
 
 export default Purchased;

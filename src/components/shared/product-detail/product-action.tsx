@@ -19,6 +19,9 @@ import { DocumentPurchase } from "@/views/product-detail/payment";
 import { Document } from "@/types/products";
 import { useAuthStore } from "@/store/auth-store";
 import { downloadFile } from "@/lib/download";
+import { PRODUCTS_DETAILS } from "@/lib/api-endpoints";
+import { useGet } from "@/hooks/useGet";
+import { useRouter } from "next/router";
 
 export const handleShare = (slug: string) => {
   const url = encodeURIComponent(`https://hujjat24.uz/product/${slug}`);
@@ -29,9 +32,9 @@ export const handleShare = (slug: string) => {
 export default function ProductAction({ product }: { product: Document }) {
   const { openModal: paymentModal } = useModal();
   const { openModal: loginModal } = useModal("login-modal");
+  const { query } = useRouter();
+  const { data: file_url } = useGet(`${PRODUCTS_DETAILS}/${query?.slug}`);
   const { token } = useAuthStore();
-
-  console.log(product);
 
   return (
     <div className="w-full space-y-3">
@@ -129,11 +132,11 @@ export default function ProductAction({ product }: { product: Document }) {
         <Button
           onClick={() => {
             if (token) {
-              if (product?.file_url) {
+              if (file_url?.file_url) {
                 downloadFile({
-                  data: product.file_url,
-                  name: product.name,
-                  extension: product?.ext,
+                  data: file_url.file_url,
+                  name: file_url?.name,
+                  extension: file_url?.ext,
                 });
               } else {
                 paymentModal();
@@ -145,7 +148,7 @@ export default function ProductAction({ product }: { product: Document }) {
           className="w-full font-mediumI think hello nugget medium rounded-full bg-gradient-to-r from-blue-600
        to-indigo-600 px-5 py-2 text-white shadow-md cursor-pointer transition-transform hover:scale-105"
         >
-          {product?.file_url ? "Yuklab olish" : "Hoziroq sotib olish"}
+          {file_url?.file_url ? "Yuklab olish" : "Hoziroq sotib olish"}
         </Button>
       </div>
 

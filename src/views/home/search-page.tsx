@@ -12,7 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 import { handleShare } from "@/components/shared/product-detail/product-action";
 
-const fileType: { [key: string]: string } = {
+export const fileType: { [key: string]: string } = {
   pdf: "/format-icon/pdf.webp",
   doc: "/format-icon/doc.png",
   docx: "/format-icon/docx.png",
