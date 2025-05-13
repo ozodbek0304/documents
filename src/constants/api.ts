@@ -3,7 +3,7 @@ import axios from "axios";
 export const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 
-export const axiosInstance = axios.create({
+export const api = axios.create({
     baseURL: baseURL,
     timeout: 30000,
 });
@@ -15,7 +15,7 @@ export const getToken = () => {
     return null;
 };
 
-axiosInstance.interceptors.request.use(
+api.interceptors.request.use(
     (config) => {
         const token = getToken();
         if (token) {
@@ -28,7 +28,7 @@ axiosInstance.interceptors.request.use(
     }
 );
 
-axiosInstance.interceptors.response.use(
+api.interceptors.response.use(
     (response) => response,
     (error) => {
         const status = error?.response?.status;
