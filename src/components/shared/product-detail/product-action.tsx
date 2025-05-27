@@ -38,7 +38,7 @@ export default function ProductAction({ product }: { product: Document }) {
 
   return (
     <div className="w-full space-y-3">
-      <div className="bg-white rounded-xl p-5 shadow-sm border ">
+      <div className="bg-white rounded-xl p-5 border ">
         <div className="w-full flex justify-between items-center mb-4">
           <h1 className="font-bold medium filter text-lg ">
             Hujjat ma'lumotlari
@@ -119,7 +119,7 @@ export default function ProductAction({ product }: { product: Document }) {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-xl p-5 shadow-sm border space-y-2 ">
+      <div className="bg-white rounded-xl p-5  border space-y-2 ">
         <div className="flex items-center justify-between">
           <div className="text-slate-600 flex items-center gap-1">
             <BadgeDollarSign className="w-5 h-5" /> <span>Narxi:</span>

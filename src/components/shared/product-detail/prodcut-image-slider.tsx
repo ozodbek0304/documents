@@ -17,7 +17,7 @@ export default function ProductImageSlider({ images }: { images: string[] }) {
   }, [images]);
 
   return (
-    <div className="border rounded-xl shadow-sm ">
+    <div className="border rounded-xl ">
       <div
         ref={scrollRef}
         className="h-[320px] sm:h-[500px] py-2 overflow-y-scroll flex flex-col items-center rounded-xl p-3 bg-gray-50"

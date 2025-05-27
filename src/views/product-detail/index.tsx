@@ -24,7 +24,7 @@ export default function ProductDetail({ product }: { product: Document }) {
           <ProductAction product={product} />
         </div>
       </div>
-      <div className="border rounded-xl p-4 mt-5 shadow-sm">
+      <div className="border rounded-xl p-4 mt-5 ">
         <h1 className="font-bold text-lg mb-3">Mahsulot tavsifi:</h1>
         <p>{product.desc}</p>
       </div>

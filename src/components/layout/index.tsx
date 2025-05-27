@@ -34,7 +34,7 @@ const Layout = ({ children }: LayoutProps) => {
           <Breadcrumb>
             <BreadcrumbList className="flex items-center flex-nowrap ">
               <BreadcrumbItem className="whitespace-nowrap">
-                <BreadcrumbLink href="/dashboard">Asosiy sahifa</BreadcrumbLink>
+                <BreadcrumbLink href="/">Asosiy sahifa</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem className="line-clamp-1">
