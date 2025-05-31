@@ -66,8 +66,48 @@ export default function Home({ data, categories }: Props) {
   return (
     <Layout>
       <Head>
-        <title>{"Asosiy sahifa"}</title>
+        <title>
+          Hujjat24 - Kurs ishlari, diplom ishlari, dars ishlanmalari va boshqa
+          o'quv hujjatlar
+        </title>
+        <meta
+          name="description"
+          content="Hujjat24 - O'quvchilar va talabalar uchun kurs ishlari, diplom ishlari, referatlar, slaydlar, dissertatsiyalar va boshqa hujjatlarni toping va yuklab oling."
+        />
+        <meta
+          name="keywords"
+          content="Hujjat24, kurs ishlari, diplom ishlari, metodik qo'llanmalar, dissertatsiyalar, referatlar, laboratoriya ishlari"
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://hujjat24.uz" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Hujjat24 - O'quv hujjatlaringiz manbai"
+        />
+        <meta
+          property="og:description"
+          content="Kurs ishlari, diplom ishlari, taqdimotlar, dissertatsiyalar va boshqa o'quv hujjatlarni toping va yuklab oling."
+        />
+        <meta property="og:image" content="/logo.png" />
+        <meta property="og:url" content="https://hujjat24.uz" />
+        <meta property="og:site_name" content="Hujjat24" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Hujjat24 - O'quv hujjatlaringiz manbai"
+        />
+        <meta
+          name="twitter:description"
+          content="Kurs ishlari, diplom ishlari, taqdimotlar, dissertatsiyalar va boshqa o'quv hujjatlarni toping va yuklab oling."
+        />
+        <meta name="twitter:image" content="/logo.png" />
       </Head>
+
       <Hero categories={categories} />
       <div className="container mx-auto pt-12 lg:px-0 px-3 space-y-12">
         {data?.length > 0 && (

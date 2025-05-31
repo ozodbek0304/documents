@@ -58,7 +58,6 @@ export default function ProductPage({ product, error, slug }: Props) {
     return () => clearTimeout(timeoutId);
   }, [slug]);
 
-
   if (error) return <p>{error}</p>;
   if (!product) return <p>Yuklanmoqda...</p>;
 
@@ -147,6 +146,7 @@ export default function ProductPage({ product, error, slug }: Props) {
                 "@type": "Offer",
                 priceCurrency: "UZS",
                 price: product.price,
+                itemCondition: "https://schema.org/NewCondition",
                 availability: "https://schema.org/InStock",
                 url: `https://hujjat24.uz/product/${product.slug}`,
               },
