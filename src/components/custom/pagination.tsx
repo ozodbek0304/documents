@@ -1,5 +1,4 @@
-"use client";
-import {  useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
@@ -13,7 +12,7 @@ import {
 import Select from "./select";
 import { useRouter } from "next/router";
 
- type PaginationProps = {
+type PaginationProps = {
   totalPages?: number;
   paramName?: string;
   disabled?: boolean;
@@ -22,6 +21,7 @@ import { useRouter } from "next/router";
   changePageSize?: boolean;
   pageSize?: number;
   clearOthers?: boolean;
+  currentPage: number;
 };
 
 export default function ParamPagination({
@@ -33,15 +33,10 @@ export default function ParamPagination({
   changePageSize = true,
   pageSize = 20,
   clearOthers,
+  currentPage,
 }: PaginationProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  let currentPage = parseInt(searchParams.get(paramName) || "1", 20);
-  currentPage =
-    isNaN(currentPage) || currentPage < 1
-      ? 1
-      : Math.min(currentPage, totalPages);
 
   const childPages =
     typeof window !== "undefined" && window.innerWidth <= 640 ? 1 : 2;
@@ -130,16 +125,16 @@ export default function ParamPagination({
             typeof page === "number" ? (
               <PaginationItem key={page}>
                 <PaginationLink
-                  isActive={page === currentPage}
+                  isActive={page == currentPage}
                   onClick={() => handlePageChange(page)}
                   className={cn(
                     "cursor-pointer",
                     disabled &&
                       "cursor-not-allowed pointer-events-none opacity-50",
                     "w-6 h-6 text-xs sm:text-sm sm:w-8 sm:h-8",
-                    page === currentPage && "!border-blue-500 !text-primary"
+                    page == currentPage && "!border-blue-500 !text-primary"
                   )}
-                  aria-current={page === currentPage ? "page" : undefined}
+                  aria-current={page == currentPage ? "page" : undefined}
                 >
                   {page}
                 </PaginationLink>
@@ -191,5 +186,3 @@ export default function ParamPagination({
     </div>
   );
 }
-
-

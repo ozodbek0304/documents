@@ -24,6 +24,7 @@ interface CategoryPageProps {
     results: Document[];
   };
   currentSlug: string;
+  page:number
 }
 
 export async function getServerSideProps(context: {
@@ -67,6 +68,7 @@ export async function getServerSideProps(context: {
       document,
       categories,
       currentSlug: slug,
+      page,
     },
   };
 }
@@ -75,8 +77,11 @@ const CategoryPage = ({
   currentSlug,
   categories,
   document,
+  page,
 }: CategoryPageProps) => {
   const { open, toggleOpen } = useCatalogStore();
+
+   
 
   return (
     <Layout>
@@ -129,7 +134,7 @@ const CategoryPage = ({
       </div>
       {document?.pages > 1 ? (
         <div className="my-5 flex justify-center container mx-auto lg:px-0 px-3 ">
-          <ParamPagination totalPages={document.pages} />
+          <ParamPagination currentPage={page} totalPages={document.pages} />
         </div>
       ) : null}
     </Layout>
