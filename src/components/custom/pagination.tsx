@@ -1,4 +1,4 @@
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
@@ -21,7 +21,6 @@ type PaginationProps = {
   changePageSize?: boolean;
   pageSize?: number;
   clearOthers?: boolean;
-  currentPage: number;
 };
 
 export default function ParamPagination({
@@ -33,10 +32,11 @@ export default function ParamPagination({
   changePageSize = true,
   pageSize = 20,
   clearOthers,
-  currentPage,
 }: PaginationProps) {
   const searchParams = useSearchParams();
+  const { query } = useRouter();
   const router = useRouter();
+  const currentPage: any = query?.page;
 
   const childPages =
     typeof window !== "undefined" && window.innerWidth <= 640 ? 1 : 2;
