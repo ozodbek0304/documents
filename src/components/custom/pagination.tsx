@@ -36,7 +36,12 @@ export default function ParamPagination({
   const searchParams = useSearchParams();
   const { query } = useRouter();
   const router = useRouter();
-  const currentPage: any = query?.page;
+
+  let currentPage: any = parseInt((query as any)?.page || "1", 20);
+  currentPage =
+    isNaN(currentPage) || currentPage < 1
+      ? 1
+      : Math.min(currentPage, totalPages);
 
   const childPages =
     typeof window !== "undefined" && window.innerWidth <= 640 ? 1 : 2;
