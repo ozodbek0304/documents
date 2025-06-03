@@ -111,6 +111,8 @@ export default function ParamPagination({
       ? getPageNumbers()
       : Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  console.log(currentPage);
+
   return (
     <div className="flex items-center gap-4">
       <Pagination className="w-auto m-0">
@@ -130,16 +132,19 @@ export default function ParamPagination({
             typeof page === "number" ? (
               <PaginationItem key={page}>
                 <PaginationLink
-                  isActive={page == currentPage}
+                  isActive={page == (query as any)?.page}
                   onClick={() => handlePageChange(page)}
                   className={cn(
                     "cursor-pointer",
                     disabled &&
                       "cursor-not-allowed pointer-events-none opacity-50",
                     "w-6 h-6 text-xs sm:text-sm sm:w-8 sm:h-8",
-                    page == currentPage && "!border-blue-500 !text-primary"
+                    page == (query as any)?.page &&
+                      "!border-blue-500 !text-primary"
                   )}
-                  aria-current={page == currentPage ? "page" : undefined}
+                  aria-current={
+                    page == (query as any)?.page ? "page" : undefined
+                  }
                 >
                   {page}
                 </PaginationLink>
